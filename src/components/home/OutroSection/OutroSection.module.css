@@ -1,0 +1,195 @@
+.outro {
+  position: relative;
+  width: 100vw;
+  height: 100svh;
+  overflow: hidden;
+  z-index: 25;
+  background-color: var(--primary);
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 0 2rem;
+}
+
+.outro h3 {
+  width: 60%;
+  text-align: center;
+  font-size: clamp(3rem, 6vw, 6rem);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--secondary);
+  margin: 0;
+}
+
+.outroWord {
+  display: inline-block;
+  margin-right: 0.3em;
+  will-change: opacity;
+}
+
+.outroStrips {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150vw;
+  height: 100svh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  pointer-events: none;
+}
+
+.outroStrip {
+  position: relative;
+  transform: translateX(0%);
+  display: flex;
+  justify-content: space-around;
+  will-change: transform;
+  gap: 2rem;
+}
+
+.skill {
+  width: max-content;
+  padding: 0.8rem 1.6rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.skill p {
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0;
+  white-space: nowrap;
+}
+
+/* Offsets verticais para criar layout dinâmico */
+.os1 {
+  margin-top: 10rem;
+}
+
+.os2 {
+  margin-top: -2rem;
+}
+
+.os3 {
+  margin-top: 16rem;
+}
+
+.os4 {
+  margin-top: -2rem;
+}
+
+.os5 {
+  margin-top: 1rem;
+}
+
+.os6 {
+  margin-top: 2rem;
+}
+
+/* Variantes de cores das skills */
+.skillVar1 {
+  background-color: rgba(237, 241, 232, 0.1);
+  border: 1px solid rgba(237, 241, 232, 0.2);
+  color: var(--secondary);
+}
+
+.skillVar2 {
+  background-color: rgba(237, 241, 232, 0.15);
+  border: 1px solid rgba(237, 241, 232, 0.25);
+  color: var(--secondary);
+}
+
+.skillVar3 {
+  background-color: rgba(237, 241, 232, 0.2);
+  border: 1px solid rgba(237, 241, 232, 0.3);
+  color: var(--secondary);
+}
+
+/* Hover effect sutil */
+.skill:hover {
+  transform: scale(1.05);
+  background-color: rgba(237, 241, 232, 0.3);
+  border-color: rgba(237, 241, 232, 0.4);
+}
+
+/* Media Queries */
+@media (min-width: 2800px) {
+  .outro h3 {
+    width: 100%;
+    font-size: 8rem;
+  }
+}
+
+@media (max-width: 1200px) {
+  .outro h3 {
+    width: 80%;
+    font-size: clamp(2.5rem, 5vw, 5rem);
+  }
+
+  .skill p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 1000px) {
+  .outro h3 {
+    width: 90%;
+    font-size: clamp(2rem, 4vw, 4rem);
+  }
+
+  .outroStrips {
+    width: 300vw;
+  }
+
+  .os1 {
+    margin-top: 2.5rem;
+  }
+
+  .os3 {
+    margin-top: 10rem;
+  }
+
+  .skill {
+    padding: 0.6rem 1.2rem;
+  }
+
+  .skill p {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .outro h3 {
+    width: 95%;
+    font-size: clamp(1.8rem, 3.5vw, 3rem);
+  }
+
+  .outroStrips {
+    width: 400vw;
+  }
+
+  .skill {
+    padding: 0.5rem 1rem;
+  }
+
+  .skill p {
+    font-size: 0.7rem;
+  }
+
+  .outroStrip {
+    gap: 1rem;
+  }
+}

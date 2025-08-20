@@ -1,0 +1,139 @@
+/* HERO CONTAINER */
+.heroContainer {
+  height: 100svh;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.heroLogo {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  will-change: transform, opacity;
+  transform-origin: center center;
+  pointer-events: auto;
+}
+
+.heroLogo img {
+  object-fit: contain;
+  width: 50%;
+  height: 50%;
+  max-width: 500px;
+}
+
+/* GRADIENT CANVAS */
+.gradientCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100svh;
+  z-index: 1;
+  will-change: opacity, visibility;
+  transform: translateZ(0);
+  pointer-events: auto;
+}
+
+/* NAVEGAÇÃO */
+.scrollIndicator {
+  color: var(--secondary);
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.8;
+  margin: 0;
+  animation: bounce 2s infinite;
+  will-change: transform, opacity;
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  z-index: 15;
+  pointer-events: none;
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  40% {
+    transform: translateX(-50%) translateY(-8px);
+  }
+  60% {
+    transform: translateX(-50%) translateY(-4px);
+  }
+}
+
+/* EXTRA SPACING */
+.extra {
+  height: 50svh;
+}
+
+/* MEDIA QUERIES */
+@media screen and (max-width: 768px) {
+  .nav {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .heroLogo {
+    width: 40%;
+  }
+
+  .navItems {
+    gap: 2rem;
+  }
+
+  .navItems a {
+    font-size: 0.9rem;
+  }
+
+  .heroFooter {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .heroFooter p {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .nav,
+  .heroFooter {
+    padding: 1.5rem;
+  }
+
+  .navItems {
+    gap: 1.5rem;
+  }
+
+  .navItems a {
+    font-size: 0.8rem;
+  }
+
+  .logo p {
+    font-size: 1rem;
+  }
+}
+
+/* Performance optimizations */
+@supports (contain: layout style paint) {
+  .heroContainer,
+  .gradientCanvas {
+    contain: layout style paint;
+  }
+}

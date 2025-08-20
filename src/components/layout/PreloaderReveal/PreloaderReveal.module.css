@@ -1,0 +1,116 @@
+.preloader,
+.splitOverlay,
+.tagsOverlay {
+  position: fixed;
+  width: 100vw;
+  height: 100svh;
+  top: 0;
+  left: 0;
+}
+
+.preloader,
+.splitOverlay {
+  background-color: var(--primary);
+  color: var(--secondary);
+}
+
+.preloader,
+.tagsOverlay {
+  z-index: 10002;
+}
+
+.splitOverlay {
+  z-index: 10001;
+}
+
+.preloaderIntroTitle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
+}
+
+.preloaderOutroTitle {
+  position: absolute;
+  top: 50%;
+  left: calc(50% + 10rem);
+  transform: translate(-50%, -50%);
+}
+
+.preloaderTag {
+  position: absolute;
+  width: max-content;
+  color: #5a5a5a;
+  overflow: hidden;
+}
+
+.tag1 {
+  top: 15%;
+  left: 15%;
+}
+.tag2 {
+  bottom: 15%;
+  left: 25%;
+}
+.tag3 {
+  bottom: 30%;
+  right: 15%;
+}
+
+.preloaderIntroTitle :global(.char),
+.preloaderOutroTitle :global(.char) {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  margin-top: 0.75rem;
+}
+
+.preloaderIntroTitle h1,
+.preloaderOutroTitle h1 {
+  white-space: nowrap;
+}
+
+.preloaderIntroTitle :global(.first-char) {
+  transform-origin: top left;
+}
+
+.preloaderIntroTitle h1,
+.preloaderOutroTitle h1 {
+  text-transform: uppercase;
+  font-size: 6rem;
+  font-weight: 600;
+  line-height: 1;
+  font-family: "Host Grotesk", sans-serif;
+  margin: 0;
+}
+
+.preloaderTag p {
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: "Host Grotesk", sans-serif;
+  margin: 0;
+}
+
+@media (max-width: 1000px) {
+  .preloaderIntroTitle h1,
+  .preloaderOutroTitle h1 {
+    font-size: 2.5rem;
+  }
+  .preloaderOutroTitle {
+    left: calc(50% + 4rem);
+  }
+  .preloaderIntroTitle :global(.char),
+  .preloaderOutroTitle :global(.char) {
+    margin-top: 0.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .preloaderIntroTitle h1,
+  .preloaderOutroTitle h1 {
+    font-size: 2rem;
+  }
+}

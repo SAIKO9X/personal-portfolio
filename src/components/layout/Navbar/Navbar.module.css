@@ -1,0 +1,224 @@
+.menu {
+  position: fixed;
+  top: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  max-width: 600px;
+  z-index: 9999;
+  transition: transform 0.4s ease;
+}
+
+.menu.hidden {
+  transform: translateX(-50%) translateY(-200%);
+}
+
+.menuHeader {
+  position: relative;
+  padding: 0.5rem 2rem 0.5rem 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--primary);
+  border-radius: 8px;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.menuLogo {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.menuLogo img {
+  width: 5rem;
+  transition: transform 0.5s ease;
+}
+
+.menuLogo img.rotated {
+  transform: rotate(180deg);
+}
+
+.menuToggle {
+  position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+}
+
+.menuHamburgerIcon {
+  width: 20px;
+  height: 25px;
+  position: absolute;
+  top: 10px;
+  right: 0;
+  cursor: pointer;
+}
+
+.menuItem {
+  transition: all 0.2s ease;
+  display: block;
+  width: 20px;
+  height: 2px;
+  margin: 0 0 4px;
+  background: var(--secondary);
+  border-radius: 1px;
+}
+
+.menuHamburgerIcon.open .menuItem {
+  background: var(--secondary);
+}
+
+.menuHamburgerIcon.open .menuItem:first-child {
+  transform: rotate(45deg);
+  transform-origin: 5px;
+}
+
+.menuHamburgerIcon.open .menuItem:nth-child(2) {
+  transform: rotate(-45deg);
+  transform-origin: 6px;
+}
+
+.menuOverlay {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: var(--primary);
+  border-radius: 0 0 8px 8px;
+  margin-top: -8px;
+  padding-top: 8px;
+  transform-origin: top;
+  transform: scaleY(0);
+  overflow: hidden;
+  will-change: transform;
+}
+
+.menuNav {
+  padding: 3rem 0 2rem 0;
+}
+
+.menuNav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menuNav li {
+  margin: -4px 0;
+  opacity: 1;
+  overflow: hidden;
+}
+
+.menuNav span {
+  display: block;
+  padding: 0.5rem 1.75rem;
+  position: relative;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--secondary);
+  font-family: "Host Grotesk", sans-serif;
+  font-size: 5rem;
+  letter-spacing: -0.02rem;
+  font-weight: 900;
+  line-height: 0.85;
+  overflow: hidden;
+  transition: opacity 0.3s ease;
+}
+
+.menuNav span:hover {
+  opacity: 0.7;
+}
+
+.menuNav li.active span {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.menuFooter {
+  padding: 1.5rem 1.75rem 1rem 1.75rem;
+  opacity: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px dashed rgba(255, 255, 255, 0.2);
+}
+
+.menuSocial {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.menuSocial a,
+.menuTime {
+  color: var(--secondary);
+  font-size: 1.25rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  font-family: "SF Mono", "Monaco", "Inconsolata", monospace;
+  font-weight: 500;
+}
+
+.menuSocial a:hover {
+  opacity: 0.7;
+}
+
+.menuTime {
+  width: max-content;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+@media (max-width: 1000px) {
+  .menu {
+    width: 90%;
+    max-width: none;
+  }
+
+  .menuHeader {
+    padding: 1rem 1.5rem;
+  }
+
+  .menuNav a {
+    font-size: 3rem;
+    letter-spacing: 0;
+    padding: 0.75rem 1.5rem;
+  }
+
+  .menuFooter {
+    padding: 2rem 1.75rem 2rem 1.75rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .menuSocial {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .menu {
+    top: 1rem;
+  }
+
+  .menuNav a {
+    font-size: 2.5rem;
+  }
+
+  .menuHeader {
+    padding: 0.75rem 1rem;
+  }
+
+  .menuFooter {
+    padding: 1.5rem 1rem;
+  }
+}

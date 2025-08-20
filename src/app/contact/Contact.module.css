@@ -1,0 +1,328 @@
+.contactPage {
+  background-color: var(--primary);
+  color: var(--secondary);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Hero Section */
+.heroContainer {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.contactHero {
+  position: relative;
+  width: 100vw;
+  height: 90vh;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 8rem;
+  overflow: hidden;
+}
+
+.contactHero .container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.contactHero h1 {
+  font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  max-width: 1200px;
+  background: linear-gradient(
+    135deg,
+    var(--secondary) 0%,
+    rgba(237, 241, 232, 0.8) 50%,
+    rgba(237, 241, 232, 0.6) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Contact Details */
+.contactDetails {
+  padding: 8rem 0;
+  position: relative;
+  z-index: 5;
+  background-color: var(--primary);
+}
+
+.detailsContainer {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.row {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  padding-block: 4rem;
+  border-bottom: 1px solid rgba(237, 241, 232, 0.15);
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.col {
+  flex: 1;
+  display: flex;
+  gap: 2rem;
+  /* Em telas grandes, a segunda coluna tem sub-colunas lado a lado */
+}
+
+.col:nth-child(2) {
+  flex-direction: row;
+}
+
+.subCol {
+  flex: 1;
+}
+
+/* Contact Items */
+.contactDetails h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  color: var(--secondary);
+}
+
+.contactDetails h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.contactDetails p {
+  font-size: 1.3rem;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+  opacity: 0.8;
+  color: var(--secondary);
+  text-transform: uppercase;
+}
+
+.contactDetails a {
+  color: var(--secondary);
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+  position: relative;
+}
+
+.contactDetails a:hover {
+  opacity: 0.7;
+}
+
+.contactDetails a::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--secondary);
+  transition: width 0.3s ease;
+}
+
+.contactDetails a:hover::after {
+  width: 100%;
+}
+
+/* WhatsApp Button */
+.whatsappBtn {
+  padding: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  color: var(--primary);
+  background-color: var(--secondary);
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-family: var(--font-geist-sans);
+  transition: all 0.3s ease-in-out;
+}
+
+.whatsappBtn:hover {
+  transform: scale(1.1);
+}
+
+/* Time and Status */
+.currentTime {
+  font-family: var(--font-geist-mono);
+  font-size: 1.4rem !important;
+  font-weight: 700 !important;
+  color: #4285f4 !important;
+  margin-bottom: 1rem !important;
+}
+
+.statusIndicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.25rem;
+  opacity: 0.9;
+  text-transform: uppercase;
+}
+
+.statusDot {
+  width: 8px;
+  height: 8px;
+  background: #4ade80;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.1);
+  }
+}
+
+/* --- PARTE RESPONSIVA AJUSTADA --- */
+
+@media (max-width: 900px) {
+  .row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+
+  .col {
+    flex-direction: column;
+    width: 100%;
+    gap: 2rem;
+  }
+
+  .col:nth-child(2) {
+    flex-direction: column; /* Força as sub-colunas a ficarem verticais */
+  }
+
+  .subCol {
+    width: 100%;
+  }
+
+  .contactHero h1 {
+    font-size: clamp(2.5rem, 10vw, 4.5rem);
+  }
+
+  .contactDetails h2 {
+    font-size: 2.5rem;
+  }
+
+  .contactDetails h3 {
+    font-size: 1.6rem;
+  }
+
+  .contactDetails p {
+    font-size: 1.4rem;
+  }
+
+  .statusIndicator {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .detailsContainer,
+  .heroContainer {
+    padding: 0 1.5rem;
+  }
+
+  .contactHero {
+    height: 70vh;
+    padding-bottom: 4rem;
+  }
+
+  .contactDetails {
+    padding: 4rem 0;
+  }
+
+  .contactDetails h2 {
+    font-size: 2.2rem;
+  }
+
+  .contactDetails h3 {
+    font-size: 1.4rem;
+  }
+
+  .contactDetails p {
+    font-size: 1.3rem;
+  }
+
+  .currentTime {
+    font-size: 1.3rem !important;
+  }
+
+  .whatsappBtn {
+    padding: 0.8rem 1.5rem;
+    font-size: 1.2rem;
+  }
+
+  .statusIndicator {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contactHero {
+    height: 60vh;
+  }
+
+  .contactDetails {
+    padding: 3rem 0;
+  }
+
+  .row {
+    padding-block: 2.5rem;
+    gap: 1.5rem;
+  }
+
+  .contactDetails h2 {
+    font-size: 2rem;
+  }
+
+  .contactDetails h3 {
+    font-size: 1.3rem;
+  }
+
+  .contactDetails p {
+    font-size: 1.2rem;
+  }
+
+  .whatsappBtn {
+    padding: 0.8rem 1.5rem;
+    width: 100%;
+    font-size: 1.1rem;
+  }
+
+  .statusIndicator {
+    font-size: 1.2rem;
+  }
+}

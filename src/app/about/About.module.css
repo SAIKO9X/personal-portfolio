@@ -1,0 +1,275 @@
+/* About Hero Section */
+.aboutHero {
+  position: relative;
+  width: 100vw;
+  height: 100svh;
+  padding: 8em 2em 6em 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--primary);
+  color: var(--secondary);
+  overflow: hidden;
+}
+
+.aboutHeroHeader {
+  text-align: center;
+}
+
+.aboutHeroHeader h1 {
+  font-size: clamp(4rem, 10vw, 7.5rem);
+  font-weight: 900;
+  line-height: 0.9;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+.aboutHeroHeader h1:first-child {
+  font-weight: 400;
+  opacity: 0.8;
+}
+
+.aboutHeroBio {
+  text-align: center;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.aboutHeroBio p {
+  color: var(--secondary);
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.ss {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.mn {
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.6;
+}
+
+.aboutHeroPortrait {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Rotação inicial removida do CSS */
+  width: 15%;
+  aspect-ratio: 5/7;
+  border-radius: 1em;
+  overflow: hidden;
+  border: 0.25em solid var(--primary);
+  outline: 0.25em solid rgba(20, 20, 20, 0.2);
+  box-shadow: 0 20px 60px rgba(20, 20, 20, 0.3);
+  will-change: transform;
+}
+
+.aboutHeroPortrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(20%);
+  transition: filter 0.3s ease;
+}
+
+.aboutHeroPortrait:hover img {
+  filter: grayscale(0%);
+}
+
+/* About Copy Section */
+.aboutCopy {
+  position: relative;
+  width: 100vw;
+  padding: 8em 2em;
+  background-color: var(--primary);
+}
+
+.aboutCopyContent {
+  text-align: center;
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--secondary);
+  border: 0.25em solid var(--primary);
+  border-radius: 1em;
+  padding: 3em 2em;
+  gap: 2em;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 2;
+  text-transform: uppercase;
+}
+
+.aboutCopyContent h3 {
+  font-weight: 400;
+  font-size: 2rem;
+  line-height: 1.6;
+  color: var(--primary);
+  margin: 0;
+}
+
+.aboutCopyContent h3 span {
+  font-weight: 900;
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(
+    to right,
+    rgba(20, 20, 20, 0.1) 0%,
+    rgba(20, 20, 20, 0.1) 100%
+  );
+  background-position: 0 100%;
+  background-size: 100% 40%;
+  background-repeat: no-repeat;
+  padding: 0 0.2em;
+  transition: all 0.3s ease;
+}
+
+.aboutCopyContent h3 span:hover {
+  background-size: 100% 100%;
+  color: var(--secondary);
+  background-image: linear-gradient(
+    to right,
+    var(--primary) 0%,
+    var(--primary) 100%
+  );
+}
+
+/* Tags */
+.tag {
+  position: absolute;
+  width: max-content;
+  background-color: var(--secondary);
+  border: 2px solid var(--primary);
+  border-radius: 1em;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  will-change: transform;
+  z-index: 1;
+}
+
+.tag:hover {
+  background-color: var(--primary);
+  transform: scale(1.1) !important;
+}
+
+.tag:hover p {
+  color: var(--secondary);
+}
+
+.tag p {
+  text-transform: uppercase;
+  color: var(--primary);
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 0.75em 1.5em;
+  margin: 0;
+  letter-spacing: 0.1em;
+  transition: color 0.3s ease;
+}
+
+#tag1 {
+  top: 20%;
+  left: 15%;
+  transform: translate(-50%, -50%) rotate(20deg);
+}
+
+#tag2 {
+  top: 40%;
+  left: 5%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+#tag3 {
+  top: 30%;
+  right: 15%;
+  transform: translate(50%, -50%) rotate(5deg);
+}
+
+#tag4 {
+  top: 60%;
+  left: 10%;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+#tag5 {
+  top: 70%;
+  right: 10%;
+  transform: translate(50%, -50%) rotate(-60deg);
+}
+
+/* Os estilos para Skills e Stats foram removidos */
+
+/* Media Queries */
+@media (max-width: 1000px) {
+  .aboutHero {
+    padding: 8em 2em 4em 2em;
+  }
+
+  .aboutHeroHeader h1 {
+    font-size: clamp(3rem, 8vw, 5rem);
+  }
+
+  .aboutHeroBio {
+    width: 100%;
+  }
+
+  .aboutHeroPortrait {
+    width: 30%;
+    max-width: 200px;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  .aboutCopyContent {
+    width: 90%;
+    padding: 2em 1.5em;
+  }
+
+  .aboutCopyContent h3 {
+    font-size: 1.1rem;
+  }
+
+  .tag {
+    display: none;
+  }
+
+  /* Estilos removidos de Skills e Stats aqui */
+}
+
+@media (max-width: 600px) {
+  .aboutHero {
+    padding: 6em 1.5em 3em 1.5em;
+  }
+
+  .aboutHeroHeader h1 {
+    font-size: 2.5rem;
+  }
+
+  .aboutHeroBio .ss {
+    font-size: 1rem;
+  }
+
+  .aboutHeroPortrait {
+    width: 40%;
+  }
+
+  .aboutCopy {
+    padding: 4em 1.5em;
+  }
+
+  .aboutCopyContent h3 {
+    font-size: 1rem;
+  }
+}

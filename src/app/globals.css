@@ -1,0 +1,141 @@
+@import url("https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&display=swap");
+
+/* CSS VARIABLES */
+:root {
+  --primary: #141414;
+  --secondary: #edf1e8;
+}
+
+/* CSS RESET */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* BASE STYLES */
+html {
+  font-size: clamp(8px, calc(100vw / 1920 * 10), 16px);
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* LENIS SMOOTH SCROLL */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* BODY */
+body {
+  font-family: "Host Grotesk", sans-serif;
+  background-color: var(--primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeSpeed;
+  overflow-x: hidden;
+  transition-property: opacity, transform, filter;
+  transition-timing-function: ease-in-out;
+  transition-duration: 500ms;
+}
+
+/* PRELOADER SPECIFIC STYLES */
+body.preloader-active {
+  overflow: hidden;
+  height: 100vh;
+}
+
+/* Classe aplicada durante transições para efeito extra */
+.page-transition {
+  opacity: 0.8;
+  transform: translateY(10px) scale(0.99);
+  filter: blur(2px);
+}
+
+.skillsSection,
+.featuredWork,
+.servicesSection,
+.outro {
+  contain: layout;
+}
+
+/* PRELOADER GSAP SPLIT TEXT STYLES */
+.split-line {
+  overflow: hidden;
+}
+
+.word {
+  display: inline-block;
+  will-change: transform;
+}
+
+.char {
+  display: inline-block;
+  will-change: transform;
+}
+
+/* Prevent FOUC (Flash of Unstyled Content) */
+.preloader-text-element {
+  visibility: hidden;
+}
+
+.preloader-text-element.split-ready {
+  visibility: visible;
+}
+
+/* MEDIA QUERIES GLOBAIS */
+@media screen and (max-width: 768px) {
+  html {
+    font-size: clamp(6px, calc(100vw / 768 * 10), 14px);
+  }
+}
+
+/* ACESSIBILIDADE */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .page-transition {
+    transform: none !important;
+    filter: none !important;
+  }
+
+  /* Desabilita o preloader para usuários que preferem movimento reduzido */
+  .preloader,
+  .split-overlay,
+  .tags-overlay {
+    display: none !important;
+  }
+}

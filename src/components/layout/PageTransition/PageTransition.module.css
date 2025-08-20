@@ -1,0 +1,19 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--primary);
+  z-index: 10000;
+  pointer-events: none;
+  transform: translateY(-100%);
+  will-change: transform;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  transition: opacity 0.3s ease;
+  will-change: opacity;
+}
