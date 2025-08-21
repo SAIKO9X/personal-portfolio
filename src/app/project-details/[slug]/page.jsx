@@ -17,7 +17,6 @@ export default function ProjectDetails() {
   const { navigateWithTransition, isTransitioning } = usePageTransition();
   const mainRef = useRef(null);
   const footerRef = useRef(null);
-  const footerCopyRef = useRef(null);
   const exitButtonRef = useRef(null);
   const projectNavRef = useRef(null);
   const progressBarRef = useRef(null);
@@ -27,36 +26,45 @@ export default function ProjectDetails() {
   const [loading, setLoading] = useState(true);
   const nextProjectProgressBarRef = useRef(null);
   const [projectData, setProjectData] = useState(null);
-  const nextProjectProgressContainerRef = useRef(null);
   const [isAutoTransitioning, setIsAutoTransitioning] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
   const [showHoverMessage, setShowHoverMessage] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
-  // Lógica para desmutar o vídeo
+  // Detecta se é mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 900);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // Lógica para desmutar o vídeo (só funciona no desktop)
   const handleVideoClick = (e) => {
+    if (isMobile) return; // Desabilita no mobile
+
     const videoElement = e.currentTarget;
     setIsMuted(!isMuted);
     videoElement.muted = !isMuted;
   };
 
   const handleMouseEnter = () => {
-    setShowHoverMessage(true);
+    if (!isMobile) setShowHoverMessage(true);
   };
 
   const handleMouseLeave = () => {
-    setShowHoverMessage(false);
+    if (!isMobile) setShowHoverMessage(false);
   };
 
   useEffect(() => {
-    // Reset completo quando o componente monta
     document.body.style.overflow = "auto";
     window.scrollTo(0, 0);
-
-    // Força um reflow
     void document.body.offsetHeight;
 
     return () => {
-      // Limpa ao desmontar
       ScrollTrigger.getAll().forEach((st) => st.kill());
       setIsAutoTransitioning(false);
     };
@@ -96,8 +104,8 @@ export default function ProjectDetails() {
     if (!projectData || loading) return;
 
     const ctx = gsap.context(() => {
-      // Animação do botão de saída
-      if (exitButtonRef.current) {
+      // Animação do botão de saída (só desktop)
+      if (exitButtonRef.current && !isMobile) {
         gsap.fromTo(
           exitButtonRef.current,
           { opacity: 0, x: -50 },
@@ -150,7 +158,7 @@ export default function ProjectDetails() {
         );
       });
 
-      // Nova animação específica para o vídeo
+      // Animação do vídeo
       if (videoSectionRef.current) {
         const videoElement = videoSectionRef.current.querySelector("video");
         if (videoElement) {
@@ -172,24 +180,50 @@ export default function ProjectDetails() {
         }
       }
 
-      // Galeria horizontal atualizada
+      // Galeria - diferentes comportamentos para desktop e mobile
       const snapshotsWrapper = snapshotsWrapperRef.current;
       const snapshotsSection = snapshotsSectionRef.current;
+
       if (snapshotsWrapper && snapshotsSection) {
-        const getScrollAmount = () =>
-          -(snapshotsWrapper.scrollWidth - window.innerWidth);
-        gsap.to(snapshotsWrapper, {
-          x: getScrollAmount,
-          ease: "none",
-          scrollTrigger: {
-            trigger: snapshotsSection,
-            start: "top top",
-            end: () => `+=${getScrollAmount() * -1}`,
-            pin: true,
-            scrub: 1,
-            invalidateOnRefresh: true,
-          },
-        });
+        if (!isMobile) {
+          // Desktop: scroll horizontal
+          const getScrollAmount = () =>
+            -(snapshotsWrapper.scrollWidth - window.innerWidth);
+
+          gsap.to(snapshotsWrapper, {
+            x: getScrollAmount,
+            ease: "none",
+            scrollTrigger: {
+              trigger: snapshotsSection,
+              start: "top top",
+              end: () => `+=${getScrollAmount() * -1}`,
+              pin: true,
+              scrub: 1,
+              invalidateOnRefresh: true,
+            },
+          });
+        } else {
+          // Mobile: animações simples de entrada
+          const snapshots = gsap.utils.toArray(".snapshotItem");
+          snapshots.forEach((snapshot, index) => {
+            gsap.fromTo(
+              snapshot,
+              { opacity: 0, y: 100 },
+              {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: "power3.out",
+                scrollTrigger: {
+                  trigger: snapshot,
+                  start: "top 85%",
+                  toggleActions: "play none none none",
+                },
+                delay: index * 0.1,
+              }
+            );
+          });
+        }
       }
 
       // Barra de progresso principal
@@ -205,88 +239,116 @@ export default function ProjectDetails() {
         },
       });
 
-      // Footer com transição aprimorada
-      ScrollTrigger.create({
-        trigger: footerRef.current,
-        start: "top top",
-        end: `+=${window.innerHeight * 2}`,
-        pin: true,
-        pinSpacing: true,
-        onEnter: () => {
-          if (projectNavRef.current && !isAutoTransitioning) {
-            gsap.to(projectNavRef.current, { y: -100, duration: 0.5 });
-          }
-          if (exitButtonRef.current && !isAutoTransitioning) {
-            gsap.to(exitButtonRef.current, {
-              opacity: 0,
-              x: -50,
-              duration: 0.5,
-            });
-          }
-        },
-        onLeaveBack: () => {
-          if (projectNavRef.current && !isAutoTransitioning) {
-            gsap.to(projectNavRef.current, { y: 0, duration: 0.5 });
-          }
-          if (exitButtonRef.current && !isAutoTransitioning) {
-            gsap.to(exitButtonRef.current, { opacity: 1, x: 0, duration: 0.5 });
-          }
-        },
-        onUpdate: (self) => {
-          if (nextProjectProgressBarRef.current) {
-            gsap.set(nextProjectProgressBarRef.current, {
-              scaleX: self.progress,
-            });
-          }
+      // Footer - diferentes comportamentos para desktop e mobile
+      if (!isMobile) {
+        // Desktop: scroll automático para próximo projeto
+        ScrollTrigger.create({
+          trigger: footerRef.current,
+          start: "top top",
+          end: `+=${window.innerHeight * 2}`,
+          pin: true,
+          pinSpacing: true,
+          onEnter: () => {
+            if (projectNavRef.current && !isAutoTransitioning) {
+              gsap.to(projectNavRef.current, { y: -100, duration: 0.5 });
+            }
+            if (exitButtonRef.current && !isAutoTransitioning) {
+              gsap.to(exitButtonRef.current, {
+                opacity: 0,
+                x: -50,
+                duration: 0.5,
+              });
+            }
+          },
+          onLeaveBack: () => {
+            if (projectNavRef.current && !isAutoTransitioning) {
+              gsap.to(projectNavRef.current, { y: 0, duration: 0.5 });
+            }
+            if (exitButtonRef.current && !isAutoTransitioning) {
+              gsap.to(exitButtonRef.current, {
+                opacity: 1,
+                x: 0,
+                duration: 0.5,
+              });
+            }
+          },
+          onUpdate: (self) => {
+            if (nextProjectProgressBarRef.current) {
+              gsap.set(nextProjectProgressBarRef.current, {
+                scaleX: self.progress,
+              });
+            }
 
-          // Transição automática aprimorada
-          if (self.progress >= 1 && !isAutoTransitioning && !isTransitioning) {
-            setIsAutoTransitioning(true);
-            handleAutoTransition();
+            // Transição automática só no desktop
+            if (
+              self.progress >= 1 &&
+              !isAutoTransitioning &&
+              !isTransitioning
+            ) {
+              setIsAutoTransitioning(true);
+              handleAutoTransition();
+            }
+          },
+        });
+      } else {
+        // Mobile: footer simples sem scroll automático
+        gsap.fromTo(
+          footerRef.current,
+          { opacity: 0, y: 50 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: footerRef.current,
+              start: "top 90%",
+              toggleActions: "play none none none",
+            },
           }
-        },
-      });
+        );
+      }
     }, mainRef);
 
     return () => ctx.revert();
-  }, [projectData, loading, isAutoTransitioning, isTransitioning]);
+  }, [projectData, loading, isAutoTransitioning, isTransitioning, isMobile]);
 
-  // Transição automática no footer aprimorada
+  // Transição automática (só desktop)
   const handleAutoTransition = async () => {
+    if (isMobile) return;
+
     try {
-      // Congela o scroll
       document.body.style.overflow = "hidden";
-
-      // Mata todos os ScrollTriggers ANTES da transição
       ScrollTrigger.getAll().forEach((st) => st.kill());
-
-      // Navega usando o sistema aprimorado
       await navigateWithTransition(
         `/project-details/${projectData.nextProject.slug}`
       );
     } catch (error) {
       console.error("Erro na transição automática:", error);
-      // Restaura o scroll em caso de erro
       document.body.style.overflow = "auto";
       setIsAutoTransitioning(false);
     }
   };
 
-  // Navegação manual aprimorada
+  // Navegação manual
   const handleNavigation = async (slug) => {
     if (isAutoTransitioning || isTransitioning) return;
 
     setIsAutoTransitioning(true);
 
     try {
-      // Mata ScrollTriggers antes da navegação
       ScrollTrigger.getAll().forEach((st) => st.kill());
-
       await navigateWithTransition(`/project-details/${slug}`);
     } catch (error) {
       console.error("Erro na navegação:", error);
       setIsAutoTransitioning(false);
     }
+  };
+
+  // Função específica para o botão mobile
+  const handleMobileNextProject = () => {
+    if (!isMobile || isAutoTransitioning || isTransitioning) return;
+    handleNavigation(projectData.nextProject.slug);
   };
 
   if (loading) {
@@ -306,10 +368,12 @@ export default function ProjectDetails() {
 
   return (
     <ReactLenis root>
-      {/* Botão de Saída */}
-      <div ref={exitButtonRef} className={styles.exitButtonWrapper}>
-        <ButtonLink href="/work">← Todos os Projetos</ButtonLink>
-      </div>
+      {/* Botão de Saída - só desktop */}
+      {!isMobile && (
+        <div ref={exitButtonRef} className={styles.exitButtonWrapper}>
+          <ButtonLink href="/work">← Todos os Projetos</ButtonLink>
+        </div>
+      )}
 
       <div className={styles.projectPage} ref={mainRef}>
         {/* Navigation Bar */}
@@ -404,22 +468,24 @@ export default function ProjectDetails() {
                   Seu navegador não suporta o elemento de vídeo.
                 </video>
 
-                <div
-                  className={styles.videoOverlay}
-                  style={{
-                    opacity: isMuted ? (showHoverMessage ? 1 : 0) : 0,
-                    pointerEvents: "none",
-                  }}
-                >
-                  <div className={styles.playIndicator}>
-                    <div className={styles.playIcon}>
-                      {isMuted ? "▶" : "❚❚"}
+                {!isMobile && (
+                  <div
+                    className={styles.videoOverlay}
+                    style={{
+                      opacity: isMuted ? (showHoverMessage ? 1 : 0) : 0,
+                      pointerEvents: "none",
+                    }}
+                  >
+                    <div className={styles.playIndicator}>
+                      <div className={styles.playIcon}>
+                        {isMuted ? "▶" : "❚❚"}
+                      </div>
                     </div>
+                    <p className={styles.muteMessage}>
+                      Clique para {isMuted ? "desmutar" : "mutar"}
+                    </p>
                   </div>
-                  <p className={styles.muteMessage}>
-                    Clique para {isMuted ? "desmutar" : "mutar"}
-                  </p>
-                </div>
+                )}
               </div>
 
               <div className={styles.videoCaption}>
@@ -463,11 +529,14 @@ export default function ProjectDetails() {
           </div>
         </section>
 
-        {/* Galeria Horizontal Atualizada */}
+        {/* Galeria - Layout muda conforme o dispositivo */}
         <section className={styles.projectSnapshots} ref={snapshotsSectionRef}>
           <div className={styles.snapshotsWrapper} ref={snapshotsWrapperRef}>
             {project.snapshots.map((snapshot, index) => (
-              <div className={styles.snapshotItem} key={index}>
+              <div
+                className={`${styles.snapshotItem} snapshotItem`}
+                key={index}
+              >
                 <div className={styles.imageContainer}>
                   <img
                     src={snapshot.url}
@@ -493,23 +562,35 @@ export default function ProjectDetails() {
 
         {/* Next Project Footer */}
         <footer className={styles.projectFooter} ref={footerRef}>
-          <div ref={footerCopyRef}>
+          <div>
             <h1>{nextProject.title}</h1>
             <p>Próximo Projeto</p>
             <div className={styles.nextProjectMeta}>
               <span>{nextProject.type}</span>
               <span>{nextProject.date}</span>
             </div>
+
+            {/* Botão para mobile */}
+            {isMobile && (
+              <button
+                className={styles.mobileNextButton}
+                onClick={handleMobileNextProject}
+                disabled={isAutoTransitioning || isTransitioning}
+              >
+                Ir para {nextProject.title}
+              </button>
+            )}
           </div>
-          <div
-            className={styles.nextProjectProgress}
-            ref={nextProjectProgressContainerRef}
-          >
-            <div
-              className={styles.nextProjectProgressBar}
-              ref={nextProjectProgressBarRef}
-            />
-          </div>
+
+          {/* Barra de progresso só no desktop */}
+          {!isMobile && (
+            <div className={styles.nextProjectProgress}>
+              <div
+                className={styles.nextProjectProgressBar}
+                ref={nextProjectProgressBarRef}
+              />
+            </div>
+          )}
         </footer>
       </div>
     </ReactLenis>

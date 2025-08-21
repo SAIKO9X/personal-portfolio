@@ -245,18 +245,18 @@
   }
 
   .slideLink a {
-    font-size: 1rem;
+    font-size: 1.5rem;
     padding: 0.8rem 1.5rem;
   }
 }
 
 @media (max-width: 480px) {
   .slideTitle h2 {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
 
   .slideDescription p {
-    font-size: 0.9rem;
+    font-size: 2rem;
   }
 
   .slideInfo {
@@ -264,8 +264,7 @@
     bottom: 1.5rem;
   }
 
-  .slideTags,
-  .slideIndexWrapper {
-    font-size: 0.7rem;
+  .slideTags p {
+    font-size: 1.5rem;
   }
 }

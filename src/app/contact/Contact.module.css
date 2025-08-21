@@ -305,21 +305,21 @@
   }
 
   .contactDetails h2 {
-    font-size: 2rem;
+    font-size: 3rem;
   }
 
   .contactDetails h3 {
-    font-size: 1.3rem;
+    font-size: 2rem;
   }
 
   .contactDetails p {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
   }
 
   .whatsappBtn {
     padding: 0.8rem 1.5rem;
     width: 100%;
-    font-size: 1.1rem;
+    font-size: 1.5rem;
   }
 
   .statusIndicator {

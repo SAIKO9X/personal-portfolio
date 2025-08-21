@@ -3,8 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import PageTransition from "@/components/layout/PageTransition/PageTransition";
 import Navbar from "@/components/layout/Navbar/Navbar";
 import PreloaderProvider from "@/components/layout/PreloaderProvider/PreloaderProvider";
-import PreloaderResetButton from "@/components/dev/PreloaderResetButton";
-import PreloaderDisplayManager from "@/components/layout/PreloaderProvider/PreloaderProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

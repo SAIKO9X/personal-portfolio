@@ -29,7 +29,7 @@ export default function Contact() {
 
   // WhatsApp handler
   const handleWhatsAppClick = () => {
-    const phoneNumber = "5562999999999";
+    const phoneNumber = "5562993674953";
     const message =
       "Olá! Vim através do seu portfólio e gostaria de conversar sobre um projeto.";
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
@@ -158,7 +158,7 @@ export default function Contact() {
                       className={styles.whatsappBtn}
                       onClick={handleWhatsAppClick}
                     >
-                      Falar no WhatsApp
+                      Fale Comigo
                     </button>
                   </div>
                 </div>

@@ -1,4 +1,3 @@
-/* About Hero Section */
 .aboutHero {
   position: relative;
   width: 100vw;
@@ -254,11 +253,17 @@
   }
 
   .aboutHeroHeader h1 {
-    font-size: 2.5rem;
+    font-size: 5rem;
+    padding-top: 10rem;
   }
 
-  .aboutHeroBio .ss {
-    font-size: 1rem;
+  .aboutHeroBio {
+    gap: 5rem;
+  }
+
+  .aboutHeroBio .ss,
+  .aboutHeroBio .mn {
+    font-size: 2.5rem;
   }
 
   .aboutHeroPortrait {
@@ -270,6 +275,6 @@
   }
 
   .aboutCopyContent h3 {
-    font-size: 1rem;
+    font-size: 2rem;
   }
 }

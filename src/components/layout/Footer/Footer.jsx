@@ -213,7 +213,7 @@ const Footer = () => {
         <div className={styles.footerLeft} ref={leftContentRef}>
           <h3>
             Vamos Colaborar <br />
-            <span className={styles.email}>dev@carloseduardo.com</span>
+            <span className={styles.email}>cardosed3@gmail.com</span>
           </h3>
           <p className={styles.description}>
             De aplicações web a soluções completas — estou sempre <br />
@@ -251,7 +251,7 @@ const Footer = () => {
 
       <div className={styles.footerBottom} ref={bottomLineRef}>
         <p>© CARLOS EDUARDO 2025</p>
-        <p>DESENVOLVIDO POR CARLOSEDUARDO.DEV</p>
+        <p>DESENVOLVIDO POR CARLOSALEIXO.DEV</p>
       </div>
 
       {/* Elementos decorativos animados */}

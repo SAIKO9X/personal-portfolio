@@ -4,6 +4,7 @@
   color: var(--secondary);
   min-height: 100vh;
 }
+
 .loading,
 .notFound {
   height: 100vh;
@@ -34,6 +35,7 @@
   border-radius: 0.5rem;
   padding: 0.25rem;
 }
+
 .link {
   display: flex;
   align-items: center;
@@ -43,13 +45,16 @@
   border-radius: 0.5rem;
   transition: all 0.3s ease;
 }
+
 .link:hover {
   background: rgba(237, 241, 232, 0.2);
 }
+
 .link:has(.navButton:disabled) {
   opacity: 0.5;
   pointer-events: none;
 }
+
 .navButton {
   background: none;
   border: none;
@@ -60,10 +65,12 @@
   cursor: pointer;
   transition: opacity 0.3s ease;
 }
+
 .navButton:disabled {
   cursor: not-allowed;
   opacity: 0.5;
 }
+
 .projectPageScrollProgress {
   position: relative;
   flex: 2;
@@ -76,6 +83,7 @@
   overflow: hidden;
   background: rgba(237, 241, 232, 0.05);
 }
+
 .projectPageScrollProgress p {
   position: relative;
   z-index: 2;
@@ -85,6 +93,7 @@
   letter-spacing: 0.1em;
   margin: 0;
 }
+
 .projectPageScrollProgressBar {
   position: absolute;
   top: 0;
@@ -107,6 +116,7 @@
   max-width: 90%;
   margin: 0 auto;
 }
+
 .projectHeader h1 {
   font-size: clamp(4rem, 10vw, 10rem);
   font-weight: 800;
@@ -115,18 +125,21 @@
   line-height: 0.9;
   margin: 0;
 }
+
 .headerDivider {
   width: 100%;
   height: 1px;
   border-bottom: 1px dashed rgba(237, 241, 232, 0.3);
   margin: 2rem 0;
 }
+
 .projectMeta {
   display: flex;
   gap: 4rem;
   font-size: 1rem;
   opacity: 0.9;
 }
+
 .metaColumn {
   display: flex;
   flex-direction: column;
@@ -139,6 +152,7 @@
   margin: 2rem auto;
   max-width: 90%;
 }
+
 .projectBanner img {
   width: 100%;
   height: auto;
@@ -147,7 +161,7 @@
   border-radius: 1rem;
 }
 
-/* --- NOVA SEÇÃO DE VÍDEO --- */
+/* Seção de Vídeo */
 .projectVideo {
   padding: 8rem 2rem 6rem;
   margin: 0 auto;
@@ -272,30 +286,6 @@
   letter-spacing: 0.1em;
 }
 
-/* Efeito de brilho sutil */
-.videoWrapper::before {
-  content: "";
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(
-    45deg,
-    rgba(237, 241, 232, 0.1),
-    rgba(237, 241, 232, 0.05),
-    rgba(237, 241, 232, 0.1)
-  );
-  border-radius: 2rem;
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.videoWrapper:hover::before {
-  opacity: 1;
-}
-
 /* Project Overview */
 .projectOverview {
   display: flex;
@@ -304,15 +294,18 @@
   max-width: 1400px;
   margin: 0 auto;
 }
+
 .overviewColumn {
   flex: 1;
 }
+
 .overviewColumn:nth-child(2) {
   display: flex;
   flex-direction: column;
   gap: 3rem;
   max-width: 60ch;
 }
+
 .descriptionSection h3 {
   font-family: var(--font-geist-mono);
   font-size: 1rem;
@@ -329,11 +322,13 @@
   line-height: 1.5;
   margin-bottom: 0.25rem;
 }
+
 .descriptionSection p {
   font-size: 1.1rem;
   line-height: 1.6;
   opacity: 0.9;
 }
+
 .githubButton {
   display: inline-block;
   padding: 0.75rem 1.5rem;
@@ -346,11 +341,12 @@
   transition: all 0.3s ease;
   align-self: flex-start;
 }
+
 .githubButton:hover {
   background: rgba(237, 241, 232, 0.1);
 }
 
-/* --- SEÇÃO DE GALERIA HORIZONTAL --- */
+/* Galeria - Desktop (Horizontal) */
 .projectSnapshots {
   position: relative;
   height: 100vh;
@@ -376,7 +372,6 @@
   flex-shrink: 0;
 }
 
-/* Container da imagem */
 .imageContainer {
   position: relative;
   width: 100%;
@@ -404,7 +399,6 @@
   object-fit: contain;
 }
 
-/* Overlay sutil na imagem */
 .imageOverlay {
   position: absolute;
   top: 0;
@@ -428,7 +422,6 @@
   opacity: 1;
 }
 
-/* Numeração na imagem */
 .imageIndex {
   font-family: var(--font-geist-mono);
   font-size: 0.875rem;
@@ -443,7 +436,6 @@
   font-weight: 500;
 }
 
-/* Descrição embaixo da imagem */
 .imageDescription {
   margin-top: 2rem;
   padding: 0 1rem;
@@ -452,7 +444,6 @@
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* MUDANÇA: Hover na imageContainer afeta a description */
 .imageContainer:hover + .imageDescription {
   transform: translateY(0);
   opacity: 1;
@@ -478,50 +469,7 @@
   text-align: center;
 }
 
-/* Efeito de brilho na borda */
-.imageContainer::before {
-  content: "";
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(
-    45deg,
-    rgba(237, 241, 232, 0.2),
-    rgba(237, 241, 232, 0.05),
-    rgba(237, 241, 232, 0.2)
-  );
-  border-radius: 1.5rem;
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.imageContainer:hover::before {
-  opacity: 1;
-}
-
-/* Indicador de interação */
-.hoverIndicator {
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 40px;
-  height: 4px;
-  background: var(--secondary);
-  border-radius: 2px;
-  opacity: 0;
-  transition: all 0.3s ease;
-}
-
-.imageContainer:hover .hoverIndicator {
-  opacity: 1;
-  bottom: -6px;
-}
-
-/* Footer (Próximo Projeto) */
+/* Footer - Desktop */
 .projectFooter {
   position: relative;
   width: 100vw;
@@ -533,6 +481,7 @@
   text-align: center;
   background: var(--primary);
 }
+
 .projectFooter h1 {
   font-size: clamp(4rem, 10vw, 10rem);
   font-weight: 800;
@@ -541,12 +490,14 @@
   line-height: 0.9;
   margin-bottom: 2rem;
 }
+
 .projectFooter p {
   font-family: var(--font-geist-mono);
   font-size: 0.9rem;
   text-transform: uppercase;
   opacity: 0.7;
 }
+
 .nextProjectMeta {
   display: flex;
   gap: 2rem;
@@ -554,6 +505,7 @@
   justify-content: center;
   margin-top: 1rem;
 }
+
 .nextProjectProgress {
   position: absolute;
   bottom: 25%;
@@ -565,6 +517,7 @@
   background: rgba(237, 241, 232, 0.2);
   border-radius: 2px;
 }
+
 .nextProjectProgressBar {
   width: 100%;
   height: 100%;
@@ -572,6 +525,49 @@
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.1s ease-out;
+}
+
+/* Botão Próximo Projeto Mobile - NOVO */
+.mobileNextButton {
+  display: none;
+  width: 100%;
+  padding: 2rem;
+  background: transparent;
+  border: 2px solid rgba(237, 241, 232, 0.3);
+  border-radius: 1rem;
+  color: var(--secondary);
+  font-family: var(--font-geist-mono);
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.mobileNextButton:hover {
+  background: rgba(237, 241, 232, 0.1);
+  border-color: rgba(237, 241, 232, 0.5);
+}
+
+.mobileNextButton:active {
+  transform: scale(0.98);
+}
+
+.mobileNextButton::after {
+  content: "→";
+  position: absolute;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  transition: transform 0.3s ease;
+}
+
+.mobileNextButton:hover::after {
+  transform: translateY(-50%) translateX(10px);
 }
 
 /* Botão de saída */
@@ -632,77 +628,162 @@
   }
 }
 
-/* Estados de transição - Simplificados */
-.navButton:disabled {
-  cursor: not-allowed;
-  opacity: 0.5;
-}
-
-/* Media Queries */
-@media (max-width: 1200px) {
-  .snapshotItem {
-    width: 75vw;
-  }
-
-  .imageContainer {
-    height: 60vh;
-  }
-}
-
+/* MEDIA QUERIES - MOBILE OTIMIZADO */
 @media (max-width: 900px) {
+  /* Navegação Mobile */
   .projectNav {
     width: 95vw;
     gap: 1rem;
   }
+
+  .projectPageScrollProgress {
+    height: auto;
+    padding: 1rem;
+  }
+
+  .projectPageScrollProgress p,
+  .navButton {
+    font-size: 1.5rem;
+  }
+
+  /* Header Mobile */
   .projectMeta {
     flex-direction: column;
     gap: 1.5rem;
   }
+
+  .metaColumn p {
+    font-size: 2.5rem;
+  }
+
+  /* Overview Mobile */
   .projectOverview {
     flex-direction: column;
   }
+
   .overviewColumn {
     max-width: 100% !important;
   }
+
   .overviewColumn:nth-child(1) {
     display: none;
   }
 
-  /* Galeria responsiva */
+  .exitButtonWrapper {
+    display: none;
+  }
+
+  .projectHeader,
+  .projectBanner {
+    max-width: 100%;
+  }
+
+  .stackItems p,
+  .descriptionSection p {
+    font-size: 2rem;
+  }
+
+  .descriptionSection h3 {
+    font-size: 2rem;
+  }
+
+  .githubButton {
+    font-size: 2rem;
+  }
+
+  /* GALERIA MOBILE - VERTICAL AO INVÉS DE HORIZONTAL */
+  .projectSnapshots {
+    position: relative;
+    height: auto;
+    width: 100%;
+    padding: 4rem 2rem;
+    background-color: var(--primary);
+  }
+
   .snapshotsWrapper {
-    gap: 6vw;
-    padding: 0 3vw;
+    position: static;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    padding: 0;
+    width: 100%;
   }
 
   .snapshotItem {
-    width: 85vw;
+    width: 100%;
+    flex-shrink: 1;
   }
 
   .imageContainer {
-    height: 55vh;
+    height: auto;
     border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
+  .snapshotItem img {
+    width: 100%;
+    height: auto;
+    max-height: 70vh;
+    object-fit: contain;
+  }
+
+  /* Descrições sempre visíveis no mobile */
   .imageDescription {
     margin-top: 1.5rem;
     padding: 0 0.5rem;
+    transform: translateY(0);
+    opacity: 1;
+    transition: none;
   }
 
   .imageDescription p {
-    font-size: 1.1rem;
+    font-size: 2%;
   }
 
   .imageDescription span {
-    font-size: 0.75rem;
+    font-size: 1.5rem;
     margin-top: 0.5rem;
   }
 
   .imageIndex {
-    font-size: 0.75rem;
+    font-size: 1rem;
     padding: 0.4rem 0.8rem;
   }
 
-  /* Vídeo responsivo */
+  /* FOOTER MOBILE - COM BOTÃO */
+  .projectFooter {
+    position: relative;
+    height: auto;
+    min-height: 100svh;
+    padding: 4rem 2rem;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .projectFooter h1,
+  .projectFooter p {
+    font-size: clamp(3rem, 12vw, 8rem);
+    margin-bottom: 5rem;
+  }
+
+  .nextProjectMeta span {
+    font-size: 2rem;
+  }
+
+  /* Esconde a barra de progresso no mobile */
+  .nextProjectProgress {
+    display: none;
+  }
+
+  /* Mostra o botão no mobile */
+  .mobileNextButton {
+    display: block;
+  }
+
+  /* Vídeo Mobile */
   .projectVideo {
     padding: 4rem 1rem 3rem;
   }
@@ -713,11 +794,11 @@
   }
 
   .videoCaption p {
-    font-size: 1.25rem;
+    font-size: 2rem;
   }
 
   .videoCaption span {
-    font-size: 0.875rem;
+    font-size: 1.55rem;
   }
 
   .playIndicator {
@@ -727,5 +808,22 @@
 
   .playIcon {
     font-size: 1.25rem;
+  }
+
+  /* Remove animações de hover no mobile */
+  .imageContainer:hover {
+    transform: none;
+  }
+
+  .videoWrapper:hover .demoVideo {
+    transform: none;
+  }
+
+  .imageContainer:hover .imageOverlay {
+    opacity: 0;
+  }
+
+  .videoWrapper:hover .videoOverlay {
+    opacity: 0;
   }
 }

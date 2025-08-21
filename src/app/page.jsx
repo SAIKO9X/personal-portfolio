@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useLayoutEffect } from "react";
+import { useRef, useLayoutEffect, useState, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import InteractiveGradient from "@/components/home/InteractiveGradient/InteractiveGradient";
@@ -18,45 +18,61 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
   const mainRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Hook para detectar se é mobile de forma mais robusta
+  useEffect(() => {
+    const checkMobile = () => {
+      const mobile = window.matchMedia("(max-width: 768px)").matches;
+      setIsMobile(mobile);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   useLayoutEffect(() => {
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    if (!mainRef.current) return;
 
     let ctx = gsap.context(() => {
-      if (!isMobile) {
-        // Animação da logo
-        gsap.to(".hero-logo", {
-          autoAlpha: 0,
-          y: -30, // Adiciona movimento vertical
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: ".intro",
-            start: "top 90%",
-            end: "top 30%",
-            scrub: 1,
-            invalidateOnRefresh: true,
-          },
-        });
+      // Animação da logo (funciona em desktop e mobile)
+      gsap.to(".hero-logo", {
+        autoAlpha: 0,
+        y: isMobile ? -20 : -30,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".intro",
+          start: "top 90%",
+          end: "top 30%",
+          scrub: 1,
+          invalidateOnRefresh: true,
+        },
+      });
 
-        // Animação do gradiente com transição mais suave
-        gsap.to(".gradient-canvas", {
-          opacity: 0,
-          scale: 1.1, // Leve zoom out
-          ease: "power2.inOut",
-          scrollTrigger: {
-            trigger: ".extra",
-            start: "top bottom",
-            end: "top 60%",
-            scrub: 1.5,
-            invalidateOnRefresh: true,
+      // Animação do gradiente (funciona em desktop e mobile)
+      gsap.to(".gradient-canvas", {
+        opacity: 0,
+        scale: isMobile ? 1.05 : 1.1,
+        ease: "power2.inOut",
+        scrollTrigger: {
+          trigger: ".intro",
+          start: isMobile ? "top 80%" : "bottom center",
+          end: isMobile ? "bottom 60%" : "bottom 40%",
+          scrub: isMobile ? 2 : 1.5,
+          invalidateOnRefresh: true,
+          onComplete: () => {
+            // Força opacidade 0 quando a animação termina
+            gsap.set(".gradient-canvas", { opacity: 0, pointerEvents: "none" });
           },
-        });
-      }
+        },
+      });
 
-      // Animação do indicador de scroll (funciona em mobile também)
+      // Animação do indicador de scroll
       gsap.to(".scroll-indicator", {
         autoAlpha: 0,
-        y: -20,
+        y: isMobile ? -15 : -20,
         ease: "power2.out",
         scrollTrigger: {
           trigger: ".intro",
@@ -66,9 +82,22 @@ export default function Home() {
           invalidateOnRefresh: true,
         },
       });
+
+      // Animação adicional para garantir que o gradient suma no mobile
+      if (isMobile) {
+        gsap.to(".gradient-canvas", {
+          display: "none",
+          scrollTrigger: {
+            trigger: ".skills",
+            start: "top bottom",
+            toggleActions: "play none none reverse",
+            invalidateOnRefresh: true,
+          },
+        });
+      }
     }, mainRef);
 
-    // Delay maior para garantir que tudo carregou
+    // Delay para garantir que tudo carregou
     const timer = setTimeout(() => {
       ScrollTrigger.sort();
       ScrollTrigger.refresh(true);
@@ -78,19 +107,20 @@ export default function Home() {
       clearTimeout(timer);
       ctx.revert();
     };
-  }, []);
+  }, [isMobile]);
 
   return (
     <ReactLenis
       root
       options={{
-        duration: 1.2,
+        duration: isMobile ? 1.0 : 1.2,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         smooth: true,
         smoothTouch: false,
       }}
     >
       <div ref={mainRef}>
+        {/* Hero Container */}
         <div className={styles.heroContainer}>
           <div className={`${styles.gradientCanvas} gradient-canvas`}>
             <InteractiveGradient />
@@ -103,17 +133,38 @@ export default function Home() {
           </p>
         </div>
 
-        <IntroSection />
+        {/* Seções do conteúdo */}
+        <div className="intro">
+          <IntroSection />
+        </div>
 
-        <div className={`${styles.extra} extra`}></div>
+        {/* Espaçamento reduzido no mobile */}
+        <div
+          className={`${styles.extra} ${
+            isMobile ? styles.extraMobile : ""
+          } extra`}
+        ></div>
 
-        <SkillsGrid className="skills" skills={skillsData} />
+        <div className="skills">
+          <SkillsGrid skills={skillsData} />
+        </div>
 
         <FeaturedWork />
 
-        <div className={`${styles.extra} extra`}></div>
+        <div
+          className={`${styles.extra} ${
+            isMobile ? styles.extraMobile : ""
+          } extra`}
+        ></div>
 
         <ServicesSection />
+
+        {/* Espaçamento adicional antes da OutroSection no mobile */}
+        <div
+          className={`${styles.outroSpacing} ${
+            isMobile ? styles.outroSpacingMobile : ""
+          }`}
+        ></div>
 
         <OutroSection />
 

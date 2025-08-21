@@ -9,12 +9,21 @@
   margin-right: calc(-50vw + 50%);
 }
 
+/* Versão mobile sem pin behavior */
+.outroMobile {
+  position: relative;
+  height: 100vh; /* Altura fixa para mobile */
+  margin-top: 5vh; /* Espaçamento superior para evitar "teleporte" */
+}
+
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
   padding: 0 2rem;
+  position: relative;
+  z-index: 30;
 }
 
 .outro h3 {
@@ -25,6 +34,8 @@
   line-height: 1.1;
   color: var(--secondary);
   margin: 0;
+  position: relative;
+  z-index: 31;
 }
 
 .outroWord {
@@ -45,6 +56,7 @@
   flex-direction: column;
   justify-content: space-around;
   pointer-events: none;
+  z-index: 10;
 }
 
 .outroStrip {
@@ -63,6 +75,7 @@
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  flex-shrink: 0; /* Evita que as skills sejam comprimidas */
 }
 
 .skill p {
@@ -131,12 +144,24 @@
     width: 100%;
     font-size: 8rem;
   }
+
+  .skill {
+    padding: 1rem 2rem;
+  }
+
+  .skill p {
+    font-size: 1.2rem;
+  }
 }
 
 @media (max-width: 1200px) {
   .outro h3 {
     width: 80%;
     font-size: clamp(2.5rem, 5vw, 5rem);
+  }
+
+  .skill {
+    padding: 0.7rem 1.4rem;
   }
 
   .skill p {
@@ -171,14 +196,33 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+  .outro {
+    height: 100vh;
+    position: relative;
+  }
+
+  .outroMobile {
+    margin-top: 10vh;
+    height: 90vh;
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+
   .outro h3 {
     width: 95%;
-    font-size: clamp(1.8rem, 3.5vw, 3rem);
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    line-height: 1.2;
   }
 
   .outroStrips {
     width: 400vw;
+  }
+
+  .outroStrip {
+    gap: 1.5rem;
   }
 
   .skill {
@@ -186,10 +230,68 @@
   }
 
   .skill p {
-    font-size: 0.7rem;
+    font-size: 1.5rem;
   }
 
+  /* Ajustes nos offsets para mobile */
+  .os1 {
+    margin-top: 5rem;
+  }
+  .os2 {
+    margin-top: -1rem;
+  }
+  .os3 {
+    margin-top: 8rem;
+  }
+  .os4 {
+    margin-top: -1rem;
+  }
+  .os5 {
+    margin-top: 2rem;
+  }
+  .os6 {
+    margin-top: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .outroMobile {
+    margin-top: 8vh;
+    height: 85vh;
+  }
+
+  .outro h3 {
+    font-size: clamp(5rem, 4.5vw, 2.5rem);
+  }
+
+  .skill {
+    padding: 0.4rem 0.8rem;
+  }
+
+  .skill p {
+    font-size: 2rem;
+  }
+
+  .outroStrips {
+    width: 500vw;
+  }
+
+  .os1 {
+    margin-top: 3rem;
+  }
+
+  .os3 {
+    margin-top: 6rem;
+  }
+}
+
+/* Para dispositivos que preferem movimento reduzido */
+@media (prefers-reduced-motion: reduce) {
   .outroStrip {
-    gap: 1rem;
+    transform: translateX(-10%) !important;
+  }
+
+  .skill {
+    transition: none;
   }
 }

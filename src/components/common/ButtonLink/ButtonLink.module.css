@@ -25,3 +25,9 @@
   border-color: rgba(237, 241, 232, 0.4);
   transform: translateY(-2px);
 }
+
+@media (max-width: 480px) {
+  .button {
+    font-size: 2rem;
+  }
+}

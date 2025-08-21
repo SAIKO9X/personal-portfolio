@@ -97,7 +97,7 @@
 @media (max-width: 1000px) {
   .preloaderIntroTitle h1,
   .preloaderOutroTitle h1 {
-    font-size: 2.5rem;
+    font-size: 4.5rem;
   }
   .preloaderOutroTitle {
     left: calc(50% + 4rem);
@@ -111,6 +111,6 @@
 @media (max-width: 768px) {
   .preloaderIntroTitle h1,
   .preloaderOutroTitle h1 {
-    font-size: 2rem;
+    font-size: 3.8rem;
   }
 }

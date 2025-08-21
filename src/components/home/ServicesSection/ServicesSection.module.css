@@ -17,7 +17,7 @@
 }
 
 .servicesLabel {
-  font-size: 0.875rem;
+  font-size: 1rem;
   color: #888888;
   letter-spacing: 0.1em;
   display: block;
@@ -177,6 +177,9 @@
 }
 
 @media (max-width: 768px) {
+  .servicesLabel {
+    font-size: 1.5rem;
+  }
   .servicesSection {
     margin: 0 0.5em;
     padding: 3em 0;
@@ -203,23 +206,25 @@
   }
   .serviceContentWrapper {
     grid-template-columns: 1fr;
-    gap: 1em;
+    gap: 1.5em;
   }
   .serviceNumber {
     margin-bottom: 0.5em;
   }
   .serviceTitle {
-    font-size: 1.75rem;
+    font-size: 2.55rem;
   }
+
   .serviceDescription {
-    font-size: 1rem;
+    font-size: 2rem;
+    line-height: 1.6;
     max-width: 100%;
   }
   .serviceImage {
     height: 200px;
   }
   .tag {
-    font-size: 0.7rem;
+    font-size: 1.4rem;
     padding: 0.5em 1em;
   }
 }

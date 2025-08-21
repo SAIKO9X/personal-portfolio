@@ -1,3 +1,4 @@
+/* NAVBAR BASE STYLES - VERSÃO CORRIGIDA */
 .menu {
   position: fixed;
   top: 1.5rem;
@@ -7,6 +8,11 @@
   max-width: 600px;
   z-index: 9999;
   transition: transform 0.4s ease;
+  /* Força o elemento a usar sua própria camada de composição */
+  will-change: transform;
+  /* Garante que o elemento seja renderizado corretamente */
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .menu.hidden {
@@ -176,18 +182,20 @@
   color: rgba(255, 255, 255, 0.6);
 }
 
+/* MEDIA QUERIES PARA MOBILE */
 @media (max-width: 1000px) {
   .menu {
-    width: 90%;
-    max-width: none;
+    width: clamp(300px, 90vw, 500px);
+    max-width: 90vw;
+    min-width: 300px;
   }
 
   .menuHeader {
     padding: 1rem 1.5rem;
   }
 
-  .menuNav a {
-    font-size: 3rem;
+  .menuNav span {
+    font-size: 4rem;
     letter-spacing: 0;
     padding: 0.75rem 1.5rem;
   }
@@ -196,29 +204,141 @@
     padding: 2rem 1.75rem 2rem 1.75rem;
     flex-direction: column;
     align-items: flex-start;
-    gap: 1rem;
+    gap: 1.5rem;
   }
 
   .menuSocial {
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 1rem;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .menu {
     top: 1rem;
+    width: calc(100vw - 2rem);
+    max-width: calc(100vw - 2rem);
+    min-width: 280px;
+    margin: 0 1rem;
+    contain: layout style;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
   }
 
-  .menuNav a {
-    font-size: 2.5rem;
+  .menu.hidden {
+    transform: translateX(-50%) translateY(-200%);
   }
 
   .menuHeader {
     padding: 0.75rem 1rem;
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  .menuLogo img {
+    width: 4.5rem;
+  }
+
+  .menuNav li {
+    margin: 0;
+  }
+
+  .menuNav span {
+    font-size: 3.5rem;
+    padding: 1rem;
   }
 
   .menuFooter {
     padding: 1.5rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .menu {
+    width: calc(100vw - 1rem);
+    max-width: calc(100vw - 1rem);
+    margin: 0 0.5rem;
+  }
+
+  .menuHeader {
+    padding-right: 2rem;
+  }
+
+  .menuLogo img {
+    width: 6rem;
+  }
+
+  .menuNav span {
+    font-size: 3rem;
+    padding: 0.75rem;
+  }
+
+  .menuFooter {
+    padding: 1.25rem 1rem;
+    gap: 1.25rem;
+  }
+
+  .menuSocial a,
+  .menuTime {
+    font-size: 1.6rem;
+  }
+}
+
+/* LANDSCAPE MOBILE - AJUSTES ESPECÍFICOS */
+@media (max-width: 768px) and (orientation: landscape) {
+  .menu {
+    top: 0.5rem;
+    width: calc(100vw - 1rem);
+  }
+
+  .menuHeader {
+    padding: 0.5rem 1rem;
+  }
+
+  .menuLogo img {
+    width: 3rem;
+  }
+}
+
+/* CORREÇÃO PARA DISPOSITIVOS COM VIEWPORT INCONSISTENTE */
+@supports (width: 100dvw) {
+  @media (max-width: 768px) {
+    .menu {
+      width: calc(100dvw - 2rem);
+      max-width: calc(100dvw - 2rem);
+    }
+  }
+}
+
+/* FALLBACK PARA BROWSERS ANTIGOS */
+@supports not (contain: layout) {
+  .menu {
+    overflow: hidden;
+  }
+}
+
+/* CORREÇÃO PARA PROBLEMAS DE ZOOM EM ALGUNS DISPOSITIVOS */
+@media (max-width: 768px) {
+  .menu {
+    transform: translateX(-50%) translateZ(0);
+  }
+
+  .menu.hidden {
+    transform: translateX(-50%) translateY(-200%) translateZ(0);
+  }
+}
+
+@supports (padding: max(0px)) {
+  @media (max-width: 768px) {
+    .menu {
+      width: calc(
+        100vw -
+          max(2rem, env(safe-area-inset-left) + env(safe-area-inset-right))
+      );
+      left: 50%;
+      transform: translateX(-50%);
+    }
   }
 }
