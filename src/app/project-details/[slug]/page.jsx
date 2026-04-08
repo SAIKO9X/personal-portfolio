@@ -9,6 +9,7 @@ import { projectsData } from "@/data/projectsData";
 import { usePageTransition } from "@/hooks/usePageTransition";
 import styles from "../ProjectDetails.module.css";
 import ButtonLink from "@/components/common/ButtonLink/ButtonLink";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -314,7 +315,7 @@ export default function ProjectDetails() {
   }, [projectData, loading, isAutoTransitioning, isTransitioning, isMobile]);
 
   // Transição automática (só desktop)
-  const handleAutoTransition = async () => {
+  async function handleAutoTransition() {
     if (isMobile) return;
 
     try {
@@ -441,7 +442,7 @@ export default function ProjectDetails() {
 
         {/* Banner Image */}
         <div className={`${styles.projectBanner} reveal-on-scroll`}>
-          <img src={project.bannerImage} alt={`${project.title} banner`} />
+          <Image src={project.bannerImage} alt={`${project.title} banner`} fill style={{ objectFit: 'cover' }} priority />
         </div>
 
         {/* Seção de Vídeo */}
@@ -538,9 +539,11 @@ export default function ProjectDetails() {
                 key={index}
               >
                 <div className={styles.imageContainer}>
-                  <img
+                  <Image
                     src={snapshot.url}
                     alt={`${project.title} screenshot ${index + 1}`}
+                    fill
+                    style={{ objectFit: 'cover' }}
                   />
                   <div className={styles.imageOverlay}>
                     <span className={styles.imageIndex}>

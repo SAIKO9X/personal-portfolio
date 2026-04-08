@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect, react-hooks/exhaustive-deps */
 "use client";
 
 import { useRef, useEffect, useState } from "react";
@@ -24,20 +25,17 @@ export default function PageTransition({ children }) {
     const overlay = overlayRef.current;
     const content = contentRef.current;
 
-    // Só anima se realmente houve mudança de rota
+    // só anima se realmente houve mudança de rota
     if (previousPathnameRef.current !== pathname && overlay && content) {
       setIsTransitioning(true);
 
-      // Atualiza conteúdo imediatamente
       setDisplayChildren(children);
 
-      // Timeline mais rápida
       const tl = gsap.timeline({
         onComplete: () => {
           setIsTransitioning(false);
           document.body?.classList.remove("page-transition");
 
-          // Resolve a promise de transição se existir
           if (transitionPromiseRef.current) {
             transitionPromiseRef.current.resolve();
             transitionPromiseRef.current = null;
@@ -45,30 +43,27 @@ export default function PageTransition({ children }) {
         },
       });
 
-      // Entrada mais rápida - overlay saindo
       tl.to(overlay, {
         y: "-100%",
-        duration: 0.5, // Reduzido de 0.8s para 0.5s
-        ease: "power3.out", // Ease mais rápido
+        duration: 0.5, 
+        ease: "power3.out",
       });
 
-      // Fade in do conteúdo em paralelo
       tl.to(
         content,
         {
           opacity: 1,
-          duration: 0.4, // Reduzido
+          duration: 0.4, 
           ease: "power2.out",
         },
         "-=0.3"
-      ); // Mais overlap
+      ); 
     }
 
     previousPathnameRef.current = pathname;
   }, [pathname, children]);
 
   useEffect(() => {
-    // Sistema de transição global otimizado
     window.pageTransition = {
       animateOut: () => {
         return new Promise((resolve, reject) => {
@@ -82,20 +77,17 @@ export default function PageTransition({ children }) {
 
           transitionPromiseRef.current = { resolve, reject };
 
-          // Timeline mais rápida para saída
           const tl = gsap.timeline();
-
-          // 1. Fade out do conteúdo + overlay entrando simultaneamente
           tl.to(content, {
             opacity: 0,
-            duration: 0.2, // Muito mais rápido
+            duration: 0.2, 
             ease: "power2.in",
           })
             .to(
               overlay,
               {
                 y: 0,
-                duration: 0.5, // Reduzido de 0.8s
+                duration: 0.5,
                 ease: "power3.inOut",
               },
               "-=0.1"
@@ -108,13 +100,12 @@ export default function PageTransition({ children }) {
               "-=0.3"
             );
 
-          // Timeout de segurança menor
           setTimeout(() => {
             if (transitionPromiseRef.current) {
               transitionPromiseRef.current.resolve();
               transitionPromiseRef.current = null;
             }
-          }, 1000); // Reduzido de 5000ms para 1000ms
+          }, 1000); 
         });
       },
     };

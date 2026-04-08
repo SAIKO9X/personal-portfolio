@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect, react-hooks/exhaustive-deps */
 import { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { SplitText } from "gsap/SplitText";

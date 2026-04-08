@@ -4,8 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "./SkillsGrid.module.css";
+import Image from "next/image";
 
-// Registrar o plugin ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
 
 export default function SkillsGrid({ skills }) {
@@ -18,9 +18,8 @@ export default function SkillsGrid({ skills }) {
   const [hasInteracted, setHasInteracted] = useState(false);
 
   useEffect(() => {
-    // Animações GSAP
     const ctx = gsap.context(() => {
-      // Animação do título - linha por linha
+      // animação do título - linha por linha
       titleLinesRef.current.forEach((line, index) => {
         gsap.fromTo(
           line,
@@ -45,7 +44,7 @@ export default function SkillsGrid({ skills }) {
         );
       });
 
-      // Animação do subtítulo
+      // animação do subtítulo
       gsap.fromTo(
         subtitleRef.current,
         {
@@ -68,7 +67,7 @@ export default function SkillsGrid({ skills }) {
         }
       );
 
-      // Animação do grid - stagger nos items
+      // animação do grid - stagger nos items
       const gridItems = gridRef.current?.querySelectorAll(
         `.${styles.gridItem}`
       );
@@ -107,7 +106,7 @@ export default function SkillsGrid({ skills }) {
           }
         );
 
-        // Animação adicional para as imagens dentro dos items
+        // animação para as imagens dentro dos items
         gridItems.forEach((item, index) => {
           const img = item.querySelector("img");
           const skillName = item.querySelector(`.${styles.skillName}`);
@@ -132,7 +131,7 @@ export default function SkillsGrid({ skills }) {
             }
           );
 
-          // Animação do nome da skill no mobile
+          // animação do nome da skill no mobile
           if (window.innerWidth <= 900) {
             gsap.fromTo(
               skillName,
@@ -156,7 +155,7 @@ export default function SkillsGrid({ skills }) {
           }
         });
 
-        // Animação das bordas do grid
+        // animação das bordas do grid
         gsap.fromTo(
           gridRef.current,
           {
@@ -176,7 +175,6 @@ export default function SkillsGrid({ skills }) {
       }
     }, containerRef);
 
-    // Cleanup
     return () => ctx.revert();
   }, []);
 
@@ -255,7 +253,7 @@ export default function SkillsGrid({ skills }) {
                 rel="noopener noreferrer"
                 className={styles.gridItem}
               >
-                <img src={skill.imgSrc} alt={`${skill.name} logo`} />
+                <Image src={skill.imgSrc} alt={`${skill.name} logo`} width={120} height={120} />
                 <span className={styles.skillName}>{skill.name}</span>
               </a>
             ))}
@@ -269,7 +267,7 @@ export default function SkillsGrid({ skills }) {
                 rel="noopener noreferrer"
                 className={styles.gridItem}
               >
-                <img src={skill.imgSrc} alt={`${skill.name} logo`} />
+                <Image src={skill.imgSrc} alt={`${skill.name} logo`} width={120} height={120} />
                 <span className={styles.skillName}>{skill.name}</span>
               </a>
             ))}

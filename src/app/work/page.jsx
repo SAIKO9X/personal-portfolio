@@ -2,6 +2,7 @@
 
 import { useRef, useLayoutEffect, useState } from "react";
 import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
 import { SplitText } from "gsap/SplitText";
 import { ReactLenis } from "lenis/react";
 import Image from "next/image";
@@ -21,24 +22,7 @@ export default function Work() {
   const totalSlides = projectsData.length;
   const slideRefs = useRef([]);
 
-  useLayoutEffect(() => {
-    if (!containerRef.current) return;
 
-    let ctx = gsap.context(() => {
-      gsap.to(sliderRef.current, {
-        opacity: 1,
-        duration: 0.5,
-        ease: "power2.out",
-      });
-      initializeFirstSlide();
-      setTimeout(() => {
-        setScrollAllowed(true);
-        lastScrollTimeRef.current = Date.now();
-      }, 1500);
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
 
   const splitText = (slideElement) => {
     const slideHeader = slideElement.querySelector(`.${styles.slideTitle} h2`);
@@ -214,15 +198,32 @@ export default function Work() {
     animateSlide(direction);
   };
 
-  useLayoutEffect(() => {
+  useGSAP(() => {
+    if (!containerRef.current) return;
+
+    gsap.to(sliderRef.current, {
+      opacity: 1,
+      duration: 0.5,
+      ease: "power2.out",
+    });
+    initializeFirstSlide();
+    const timer = setTimeout(() => {
+      setScrollAllowed(true);
+      lastScrollTimeRef.current = Date.now();
+    }, 1500);
+
     const handleWheel = (e) => {
       e.preventDefault();
       handleScroll(e.deltaY > 0 ? "down" : "up");
     };
 
     window.addEventListener("wheel", handleWheel, { passive: false });
-    return () => window.removeEventListener("wheel", handleWheel);
-  }, [isAnimating, scrollAllowed, currentSlide]);
+    
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("wheel", handleWheel);
+    };
+  }, { dependencies: [isAnimating, scrollAllowed, currentSlide], scope: containerRef });
 
   return (
     <ReactLenis root>

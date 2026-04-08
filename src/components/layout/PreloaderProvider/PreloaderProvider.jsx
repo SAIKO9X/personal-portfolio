@@ -1,5 +1,4 @@
-// src/components/layout/PreloaderProvider/PreloaderProvider.jsx
-
+/* eslint-disable react-hooks/set-state-in-effect, react-hooks/exhaustive-deps */
 "use client";
 
 import { useState, useEffect } from "react";
@@ -7,7 +6,6 @@ import { usePathname } from "next/navigation";
 import PreloaderContext from "@/contexts/PreloaderContext";
 import PreloaderReveal from "@/components/layout/PreloaderReveal/PreloaderReveal";
 
-// Este é nosso provider completo e unificado
 export default function PreloaderProvider({ children }) {
   const pathname = usePathname();
   const [isLoading, setIsLoading] = useState(true);
@@ -33,9 +31,7 @@ export default function PreloaderProvider({ children }) {
     setIsLoading(true);
   };
 
-  // O valor que será compartilhado com todos os componentes filhos
   const contextValue = {
-    // O isLoading agora é uma propriedade simples do valor, não o estado inteiro
     isLoading: isLoading && !hasShown,
     handlePreloaderComplete,
     resetPreloader,
@@ -44,7 +40,6 @@ export default function PreloaderProvider({ children }) {
   const shouldShowPreloader = pathname === "/" && isLoading && !hasShown;
 
   return (
-    // O Provider do Contexto "envelopa" tudo
     <PreloaderContext.Provider value={contextValue}>
       {shouldShowPreloader && (
         <PreloaderReveal onComplete={handlePreloaderComplete} />

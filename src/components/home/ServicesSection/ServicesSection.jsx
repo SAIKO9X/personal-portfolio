@@ -7,6 +7,8 @@ import styles from "./ServicesSection.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
+import Image from "next/image";
+
 const ServiceItem = ({ number, title, copy, tags, imgSrc, isLast }) => {
   return (
     <>
@@ -28,7 +30,13 @@ const ServiceItem = ({ number, title, copy, tags, imgSrc, isLast }) => {
           </div>
         </div>
         <div className={styles.serviceImage}>
-          <img src={imgSrc} alt={title} />
+          <Image 
+            src={imgSrc} 
+            alt={title} 
+            width={600} 
+            height={400} 
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+          />
         </div>
       </div>
       {!isLast && <div className={styles.serviceDivider}></div>}

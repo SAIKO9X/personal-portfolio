@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { gsap } from "gsap";
 import { SplitText } from "gsap/SplitText";
 import styles from "./Navbar.module.css";
+import Image from "next/image";
 
 gsap.registerPlugin(SplitText);
 
@@ -245,7 +246,6 @@ export default function Navbar() {
         }
       }, 50);
 
-      // Timeout de segurança
       setTimeout(() => {
         clearInterval(checkInterval);
         resolve();
@@ -256,7 +256,7 @@ export default function Navbar() {
   const handleNavigation = async (href) => {
     if (pathname === href) return;
 
-    // Fecha o menu se estiver aberto
+    // fecha o menu se estiver aberto
     if (isOpen) {
       closeMenu();
       await new Promise((resolve) => setTimeout(resolve, 600));
@@ -269,11 +269,11 @@ export default function Navbar() {
         await waitForPageLoad();
       } catch (error) {
         console.error("Erro na transição:", error);
-        // Fallback
+        // fallback
         router.push(href);
       }
     } else {
-      // Fallback caso o PageTransition não esteja disponível
+      // fallback caso o PageTransition não esteja disponível
       router.push(href);
     }
   };
@@ -366,7 +366,7 @@ export default function Navbar() {
         onClick={toggleMenu}
       >
         <div className={styles.menuLogo}>
-          <img src="/logo.png" alt="Logo" ref={menuLogoRef} />
+          <Image src="/logo.png" alt="Logo" width={48} height={48} ref={menuLogoRef} />
         </div>
         <button
           className={styles.menuToggle}

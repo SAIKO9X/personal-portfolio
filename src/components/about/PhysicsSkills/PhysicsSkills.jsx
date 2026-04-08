@@ -297,7 +297,7 @@ export default function PhysicsSkills() {
             <div className={styles.header}>
               <h3>
                 Coisas que sei <br /> e que tornam <br />
-                sites mais legais
+                a internet mais legal
               </h3>
             </div>
           </div>
