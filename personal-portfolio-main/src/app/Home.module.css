@@ -1,0 +1,191 @@
+/* HERO CONTAINER */
+.heroContainer {
+  height: 100svh;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.heroLogo {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  will-change: transform, opacity;
+  transform-origin: center center;
+  pointer-events: auto;
+}
+
+.heroLogo img {
+  object-fit: contain;
+  width: 50%;
+  height: 50%;
+  max-width: 500px;
+}
+
+/* GRADIENT CANVAS */
+.gradientCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100svh;
+  z-index: 1;
+  will-change: opacity, visibility, transform;
+  transform: translateZ(0);
+  pointer-events: auto;
+}
+
+/* SCROLL INDICATOR */
+.scrollIndicator {
+  color: var(--secondary);
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.8;
+  margin: 0;
+  animation: bounce 2s infinite;
+  will-change: transform, opacity;
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  z-index: 15;
+  pointer-events: none;
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  40% {
+    transform: translateX(-50%) translateY(-8px);
+  }
+  60% {
+    transform: translateX(-50%) translateY(-4px);
+  }
+}
+
+/* EXTRA SPACING */
+.extra {
+  height: 50svh;
+  position: relative;
+  z-index: 20;
+}
+
+.extraMobile {
+  height: 25svh; /* Menor espaçamento no mobile */
+}
+
+/* OUTRO SPACING */
+.outroSpacing {
+  height: 10svh;
+  position: relative;
+  z-index: 20;
+  background-color: var(--primary);
+}
+
+.outroSpacingMobile {
+  height: 15svh; /* Mais espaçamento no mobile para evitar "teleporte" */
+}
+
+/* Performance optimizations */
+@supports (contain: layout style paint) {
+  .heroContainer,
+  .gradientCanvas {
+    contain: layout style paint;
+  }
+}
+
+/* MEDIA QUERIES ESPECÍFICAS PARA MOBILE */
+@media screen and (max-width: 768px) {
+  .heroContainer {
+    height: 100dvh; /* dvh para mobile */
+  }
+
+  .heroLogo {
+    width: 60%;
+  }
+
+  .heroLogo img {
+    width: 60%;
+    height: 60%;
+    max-width: 300px;
+  }
+
+  .scrollIndicator {
+    font-size: 1.2rem;
+    bottom: 3rem;
+  }
+
+  .gradientCanvas {
+    height: 100dvh;
+    /* Garantir que o gradient seja removido após a intro no mobile */
+    transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+  }
+
+  /* Força o gradient a sumir no mobile após scroll */
+  .gradientCanvas.hidden {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .heroLogo {
+    width: 70%;
+  }
+
+  .heroLogo img {
+    width: 70%;
+    height: 70%;
+    max-width: 250px;
+  }
+
+  .scrollIndicator {
+    font-size: 2rem;
+    bottom: 4rem;
+  }
+
+  .extra {
+    height: 40svh;
+  }
+
+  .extraMobile {
+    height: 20svh;
+  }
+}
+
+/* Otimizações para dispositivos com pouco poder de processamento */
+@media (max-width: 768px) and (prefers-reduced-motion: no-preference) {
+  .gradientCanvas {
+    /* Reduz a complexidade das animações no mobile */
+    will-change: opacity;
+    transform: none;
+  }
+}
+
+/* Para dispositivos que preferem movimento reduzido */
+@media (prefers-reduced-motion: reduce) {
+  .scrollIndicator {
+    animation: none;
+  }
+
+  .heroLogo,
+  .gradientCanvas,
+  .scrollIndicator {
+    transition: opacity 0.3s ease;
+  }
+}
