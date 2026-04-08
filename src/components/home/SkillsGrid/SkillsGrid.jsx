@@ -222,20 +222,20 @@ export default function SkillsGrid({ skills }) {
   return (
     <div className={styles.skillsSection}>
       <div className={styles.titleContainer} ref={titleRef}>
-        <h1 className={styles.mainTitle}>
+        <h2 className={styles.mainTitle}>
           <span
             className={styles.titleLine}
             ref={(el) => (titleLinesRef.current[0] = el)}
           >
-            <span className={styles.titleInner}>MINHA</span>
+            <span className={styles.titleInner}>MINHAS</span>
           </span>
           <span
             className={styles.titleLine}
             ref={(el) => (titleLinesRef.current[1] = el)}
           >
-            <span className={styles.titleInner}>TECH STACK</span>
+            <span className={styles.titleInner}>HABILIDADES</span>
           </span>
-        </h1>
+        </h2>
         <div className={styles.subtitle} ref={subtitleRef}>
           <p>
             Ferramentas e tecnologias que domino para criar diversas

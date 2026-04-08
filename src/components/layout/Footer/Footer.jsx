@@ -211,10 +211,10 @@ const Footer = () => {
     <footer className={styles.footer} ref={footerRef}>
       <div className={styles.footerContent}>
         <div className={styles.footerLeft} ref={leftContentRef}>
-          <h3>
-            Vamos Colaborar <br />
+          <h2 className={styles.contactTitle}>
+            Contato: Vamos Colaborar <br />
             <span className={styles.email}>cardosed3@gmail.com</span>
-          </h3>
+          </h2>
           <p className={styles.description}>
             De aplicações web a soluções completas — estou sempre <br />
             aberto para novos desafios e colaborações. Entre em <br />
@@ -250,7 +250,7 @@ const Footer = () => {
       </div>
 
       <div className={styles.footerBottom} ref={bottomLineRef}>
-        <p>© CARLOS EDUARDO 2025</p>
+        <p>© CARLOS EDUARDO {new Date().getFullYear()}</p>
         <p>DESENVOLVIDO POR CARLOSALEIXO.DEV</p>
       </div>
 

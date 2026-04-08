@@ -4,6 +4,7 @@ import { useRef, useLayoutEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ReactLenis } from "lenis/react";
+import Image from "next/image";
 import Footer from "@/components/layout/Footer/Footer";
 import styles from "./About.module.css";
 
@@ -32,7 +33,7 @@ export default function About() {
 
       // Animação de entrada do hero
       const heroElements = mainRef.current.querySelectorAll(
-        `.${styles.aboutHeroHeader} h1, .${styles.aboutHeroBio} p`
+        `.${styles.aboutHeroHeader} .${styles.aboutTitle}, .${styles.aboutHeroBio} p`
       );
 
       gsap.fromTo(
@@ -172,8 +173,8 @@ export default function About() {
         {/* Hero Section */}
         <section className={styles.aboutHero}>
           <div className={styles.aboutHeroHeader}>
-            <h1>Um pouco sobre</h1>
-            <h1>Carlos Eduardo</h1>
+            <span className={styles.aboutTitle}>Um pouco sobre</span>
+            <h1 className={styles.aboutTitle}>Carlos Eduardo Aleixo</h1>
           </div>
           <div className={styles.aboutHeroBio}>
             <p className={styles.ss}>
@@ -188,7 +189,7 @@ export default function About() {
             </p>
           </div>
           <div className={styles.aboutHeroPortrait} ref={portraitRef}>
-            <img src="/images/portrait.jpg" alt="Carlos Eduardo portrait" />
+            <Image src="/images/portrait.jpg" alt="Carlos Eduardo portrait" fill sizes="(max-width: 768px) 100vw, 50vw" priority style={{ objectFit: 'cover' }} />
           </div>
         </section>
 
@@ -196,12 +197,12 @@ export default function About() {
         <section className={styles.aboutCopy}>
           <div className={styles.aboutCopyContent} ref={copyContentRef}>
             <h3>
-              Minha abordagem é uma mistura de lógica e criatividade. Sou o
-              desenvolvedor que não apenas constrói um backend{" "}
-              <span>robusto</span> com Java e Spring, mas que também se preocupa
-              com a <span>estética</span> e a usabilidade da interface em React.
+              Minha jornada como <strong>Desenvolvedor Full Stack</strong> é movida pela constante busca da excelência técnica. Sou o
+              desenvolvedor que não apenas projeta uma arquitetura de backend{" "}
+              <span>robusto</span> e altamente escalável utilizando as tecnologias mais modernas do ecossistema <strong>Java e Spring Boot</strong>, mas que também se preocupa
+              profundamente com a <span>estética</span>, usabilidade da interface e experiência do usuário (UX/UI) ao criar aplicações interativas em <strong>React e Next.js</strong>.
               Acredito que as melhores soluções nascem quando a{" "}
-              <span>engenharia</span> encontra o <span>design</span>.
+              <span>engenharia</span> de software encontra o <span>design</span>.
             </h3>
             <h3>
               Minhas paixões alimentam meu trabalho. A estratégia de uma partida
@@ -212,12 +213,12 @@ export default function About() {
               <span>eficiente</span>.
             </h3>
             <h3>
-              No fim do dia, sou um criador. Seja configurando um deploy na{" "}
-              <span>AWS</span>, desenhando uma interface no <span>Figma</span>{" "}
+              No fim do dia, sou um criador movido a desafios complexos. Seja configurando um deploy otimizado e seguro utilizando as melhores práticas de integração contínua (CI/CD) na{" "}
+              <span>AWS</span>, desenhando uma interface performática no <span>Figma</span>, arquitetando experiências em WebGL,{" "}
               ou simplesmente descobrindo uma nova história, estou sempre
-              construindo algo. Se você busca um desenvolvedor que une
-              performance técnica com uma <span>visão humana</span> e criativa,
-              vamos criar algo <span>extraordinário</span> juntos.
+              construindo algo. Se você busca um engenheiro de software e desenvolvedor web engajado que une
+              performance técnica com uma <span>visão humana</span> e criativa — focado em entregar código limpo, escalável e alinhado aos objetivos do negócio —,
+              vamos criar algo <span>extraordinário</span> juntos no seu próximo projeto.
             </h3>
           </div>
           <div

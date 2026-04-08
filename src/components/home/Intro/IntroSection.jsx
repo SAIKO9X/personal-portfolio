@@ -10,6 +10,18 @@ gsap.registerPlugin(ScrollTrigger);
 export default function IntroSection() {
   const introRef = useRef(null);
 
+  // Calcula a idade dinamicamente com base em 06/07/2004
+  const age = (() => {
+    const birthDate = new Date("2004-07-06");
+    const today = new Date();
+    let calculatedAge = today.getFullYear() - birthDate.getFullYear();
+    const m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      calculatedAge--;
+    }
+    return calculatedAge;
+  })();
+
   useLayoutEffect(() => {
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
     let ctx = gsap.context(() => {
@@ -56,8 +68,8 @@ export default function IntroSection() {
             </div>
 
             <div className={styles.intro_card_title}>
-              <h2>PORTFOLIO</h2>
-              <h3>Carlos Eduardo</h3>
+              <h1 className={styles.mainTitle}>PORTFOLIO</h1>
+              <p className={styles.subTitle}>Carlos Eduardo Aleixo - Desenvolvedor Web</p>
             </div>
 
             <div className={styles.intro_card_description}>
@@ -81,12 +93,12 @@ export default function IntroSection() {
             <div className={styles.about_section}>
               <div className={styles.about_text}>
                 <div className={styles.intro_card_caption}>
-                  <span>SOBRE MIM</span>
+                  <h2>SOBRE MIM</h2>
                 </div>
 
                 <div className={styles.intro_card_description}>
                   <p>
-                    Tenho 20 anos e sou formado em Análise e Desenvolvimento de
+                    Tenho {age} anos e sou formado em Análise e Desenvolvimento de
                     Sistemas pela FIAP. Possuo sólidos conhecimentos em Java,
                     com foco no ecossistema Spring, e experiência no
                     desenvolvimento de APIs documentadas com Swagger.

@@ -76,7 +76,8 @@
   text-align: left;
 }
 
-.intro_card_caption span {
+.intro_card_caption span,
+.intro_card_caption h2 {
   display: block;
   font-family: "SF Mono", "Monaco", "Inconsolata", monospace;
   font-size: 2.4rem;
@@ -90,7 +91,8 @@
   text-rendering: optimizeLegibility;
 }
 
-.intro_card_caption span::after {
+.intro_card_caption span::after,
+.intro_card_caption h2::after {
   content: "";
   position: absolute;
   bottom: -1rem;
@@ -104,7 +106,8 @@
   transition: all 0.3s ease;
 }
 
-.intro_two .intro_card_caption span::after {
+.intro_two .intro_card_caption span::after,
+.intro_two .intro_card_caption h2::after {
   left: 0;
   transform: translateX(0);
 }
@@ -115,7 +118,7 @@
   will-change: transform;
 }
 
-.intro_card_title h2 {
+.intro_card_title .mainTitle {
   font-weight: 700;
   font-size: 8rem;
   color: var(--primary);
@@ -128,7 +131,7 @@
   font-display: swap;
 }
 
-.intro_card_title h3 {
+.intro_card_title .subTitle {
   font-weight: 400;
   font-size: 3.2rem;
   color: var(--primary);
@@ -278,7 +281,7 @@
     padding: 6rem 12rem;
   }
 
-  .intro_card_title h2 {
+  .intro_card_title .mainTitle {
     font-size: 7rem;
   }
 }
@@ -316,15 +319,16 @@
     text-align: center;
   }
 
-  .intro_card_caption span {
+  .intro_card_caption span,
+  .intro_card_caption h2 {
     font-size: 1.8rem;
   }
 
-  .intro_card_title h2 {
+  .intro_card_title .mainTitle {
     font-size: 5rem;
   }
 
-  .intro_card_title h3 {
+  .intro_card_title .subTitle {
     font-size: 2.2rem;
   }
 
@@ -361,7 +365,8 @@
     padding: 1.8rem 3rem;
   }
 
-  .intro_card_caption span::after {
+  .intro_card_caption span::after,
+  .intro_card_caption h2::after {
     left: 50% !important;
     transform: translateX(-50%) !important;
   }
@@ -374,11 +379,11 @@
     margin: 0 1rem;
   }
 
-  .intro_card_title h2 {
+  .intro_card_title .mainTitle {
     font-size: 4rem;
   }
 
-  .intro_card_title h3 {
+  .intro_card_title .subTitle {
     font-size: 2rem;
   }
 

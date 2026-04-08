@@ -25,7 +25,7 @@ export const projectsData = [
       "GitHub Actions",
     ],
     background:
-      "Uma plataforma full-stack completa para pedidos de comida, construída com Spring Boot no backend e React no frontend. O projeto simula um ecossistema com três tipos de utilizadores (Clientes, Donos de Restaurante e Administradores), cada um com seu próprio painel e funcionalidades, como gestão de menus, pedidos, avaliações e chat em tempo real. O ambiente é totalmente containerizado com Docker para facilitar o desenvolvimento e a implantação.",
+      "Uma plataforma full-stack completa para pedidos de comida, construída com Spring Boot no backend e React no frontend. O projeto simula um ecossistema com três tipos de utilizadores (Clientes, Donos de Restaurante e Administradores), cada um com seu próprio painel e funcionalidades, como gestão de menus, pedidos, avaliações e chat em tempo real. O ambiente é totalmente containerizado com Docker para facilitar o desenvolvimento e a implantação. Este é um forte case study das minhas habilidades como desenvolvedor web focado em React e componentes escaláveis no ecossistema front-end moderno, garantindo altíssima performance.",
     snapshots: [
       {
         url: "/work-items/food-ordering-1.png",
@@ -83,7 +83,7 @@ export const projectsData = [
       "TailwindCSS",
     ],
     background:
-      "Desenvolvimento de uma plataforma de e-commerce robusta e escalável, utilizando Spring Boot para o backend e React para o frontend. O projeto inclui um sistema completo de autenticação e autorização com JWT, gestão de produtos, categorias, carrinhos de compras e pedidos. A arquitetura foi projetada para ser modular e de fácil manutenção, com foco em boas práticas de desenvolvimento e uma experiência de usuário fluida e responsiva.",
+      "Desenvolvimento de uma plataforma de e-commerce robusta e escalável, utilizando Spring Boot para o backend e React para o frontend. O projeto inclui um sistema completo de autenticação e autorização com JWT, gestão de produtos, categorias, carrinhos de compras e pedidos. A arquitetura foi projetada para ser modular e de fácil manutenção, com foco em boas práticas de desenvolvimento e uma experiência de usuário fluida e responsiva. Demonstra profunda proficiência no desenvolvimento de web apps de alta performance com stack moderna, focado nas exigências técnicas como engenheiro front-end e desenvolvedor full-stack.",
     snapshots: [
       {
         url: "/work-items/ecommerce-1.png",
@@ -143,7 +143,7 @@ export const projectsData = [
       "ShadCN",
     ],
     background:
-      "Desenvolvimento de um sistema completo de gestão de projetos, desenhado para otimizar o fluxo de trabalho de equipas. A plataforma permite a criação e gestão de projetos, atribuição de tarefas, e acompanhamento de prazos. A funcionalidade de destaque é a colaboração em tempo real, implementada com WebSockets, que inclui um chat por projeto e notificações instantâneas sobre atualizações de tarefas, promovendo uma comunicação eficiente e centralizada.",
+      "Desenvolvimento de um sistema completo de gestão de projetos, desenhado para otimizar o fluxo de trabalho de equipas. A plataforma permite a criação e gestão de projetos, atribuição de tarefas, e acompanhamento de prazos. A funcionalidade de destaque é a colaboração em tempo real, implementada com WebSockets, que inclui um chat por projeto e notificações instantâneas sobre atualizações de tarefas, promovendo uma comunicação eficiente e centralizada. Representa uma prova real das minhas capacidades arquiteturais na construção de interfaces corporativas reativas (SPAs) utilizando ecossistemas modernos em React e WebSockets para soluções de alto valor de negócio.",
     snapshots: [
       {
         url: "/work-items/management-1.png",
@@ -201,7 +201,7 @@ export const projectsData = [
       "ScrollTrigger",
     ],
     background:
-      "Este projeto documenta um estudo técnico de front-end, focado na recriação de interações e animações inspiradas em portfólios de referência, como os encontrados no Awwwards. O projeto, embora apresentado como o portfólio de um fotógrafo fictício, tem como objetivo principal servir como uma demonstração prática de habilidades com as bibliotecas GSAP (GreenSock) e Framer Motion em um ambiente React, exibindo a implementação de animações ricas para criar uma experiência de usuário fluida e impactante.",
+      "Este projeto documenta um estudo técnico de front-end, focado na recriação de interações e animações inspiradas em portfólios de referência, como os encontrados no Awwwards. O projeto, embora apresentado como o portfólio de um fotógrafo fictício, tem como objetivo principal servir como uma demonstração prática de habilidades com as bibliotecas GSAP (GreenSock) e Framer Motion em um ambiente React, exibindo a implementação de animações ricas para criar uma experiência de usuário fluida e impactante. É um exemplo contundente da minha versatilidade como Desenvolvedor Web e UX/UI, unindo perfeitamente o design interativo 3D, micro-interações e performance visual impecável em React/Next.js.",
     snapshots: [
       {
         url: "/work-items/photographer-1.png",
@@ -233,7 +233,7 @@ export const projectsData = [
     githubUrl: "https://github.com/saiko9x/gsap-music-ai-website",
     stack: ["React", "Vite", "GSAP", "React Router", "Lenis", "ScrollTrigger"],
     background:
-      "Criação de uma landing page visualmente cativante para uma aplicação de música baseada em IA. O projeto explora o poder da biblioteca GSAP para orquestrar animações complexas. Desenvolvido como um exercício prático para aprofundar e demonstrar habilidades em animações web. O objetivo foi criar uma experiência de utilizador memorável e imersiva, demonstrando como tecnologias de animação avançadas podem ser usadas para contar uma história e apresentar um produto de forma inovadora.",
+      "Criação de uma landing page visualmente cativante para uma aplicação de música baseada em IA. O projeto explora o poder da biblioteca GSAP para orquestrar animações complexas. Desenvolvido como um exercício prático para aprofundar e demonstrar habilidades em animações web. O objetivo foi criar uma experiência de utilizador memorável e imersiva, demonstrando como tecnologias de animação avançadas podem ser usadas para contar uma história e apresentar um produto de forma inovadora. Este trabalho atesta o nível avançado como desenvolvedor web ávido na criação de experiências de usuário encantadoras utilizando React e ecossistemas estáticos ou dinâmicos modernos.",
     snapshots: [
       {
         url: "/work-items/music-1.png",

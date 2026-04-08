@@ -279,7 +279,7 @@ export default function FeaturedWork() {
     <section className={styles.featuredWork} ref={containerRef}>
       <div className={styles.projectsContainer} ref={projectsRef}>
         <div className={styles.titleSlide}>
-          <h1 className={styles.sectionTitle}>projetos selecionados</h1>
+          <h2 className={styles.sectionTitle}>projetos em destaque</h2>
         </div>
 
         {featuredProjects.map((project, index) => (

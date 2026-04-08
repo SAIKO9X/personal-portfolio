@@ -4,6 +4,7 @@ import { useRef, useLayoutEffect, useState } from "react";
 import { gsap } from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { ReactLenis } from "lenis/react";
+import Image from "next/image";
 import styles from "./Work.module.css";
 import { projectsData } from "@/data/projectsData";
 import ButtonLink from "@/components/common/ButtonLink/ButtonLink";
@@ -237,7 +238,7 @@ export default function Work() {
               ref={(el) => (slideRefs.current[index] = el)}
             >
               <div className={styles.slideImg}>
-                <img src={project.bannerImage} alt={project.title} />
+                <Image src={project.bannerImage} alt={project.title} fill sizes="100vw" priority={index === 0} style={{ objectFit: 'cover' }} />
               </div>
               <div className={styles.slideHeader}>
                 <div className={styles.slideTitle}>

@@ -31,7 +31,7 @@
   max-width: 400px;
 }
 
-.footerLeft h3 {
+.footerLeft h2 {
   font-size: 2.5rem;
   font-weight: 800;
   line-height: 1.2;
@@ -413,7 +413,7 @@
     max-width: 100%;
   }
 
-  .footerLeft h3 {
+  .footerLeft h2 {
     font-size: 2.5rem;
   }
 
@@ -475,7 +475,7 @@
     font-size: 2rem;
   }
 
-  .footerLeft h3 {
+  .footerLeft h2 {
     font-size: 3rem;
   }
 
